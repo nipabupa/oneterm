@@ -1,9 +1,14 @@
+[terminal]
+# 自定义shell
+shell = "D:\\Powershell\\pwsh.exe"
+
 [window]
 opacity = 0.85
 
 [font]
+# 自定义字体字号
 normal = { family = "DejaVuSansM Nerd Font Mono", style = "Regular" }
-size = 18
+size = 16
 
 [mouse]
 bindings = [

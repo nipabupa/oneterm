@@ -1,0 +1,40 @@
+{
+    "type_ignore": {
+        "prefix": "ign",
+        "body": [
+            "  # type: ignore"
+        ]
+    },
+    "pydoc": {
+        "prefix": "doc",
+        "body": [
+            "\"\"\"",
+            "$1",
+            ":param $2: $3",
+            ":return: $4",
+            "\"\"\""
+        ]
+    },
+    "function": {
+        "prefix": "def",
+        "body": [
+            "def $1():",
+            "    $2"
+        ]
+    },
+    "class": {
+        "prefix": "cla",
+        "body": [
+            "class $1:",
+            "    def __init__(self):",
+            "        $2"
+        ]
+    },
+    "main": {
+        "prefix": "main",
+        "body": [
+            "if __name__ == '__main__':",
+            "    $1"
+        ]
+    }
+}

@@ -1,0 +1,18 @@
+[window]
+opacity = 0.85
+
+[font]
+normal = { family = "DejaVuSansM Nerd Font Mono", style = "Regular" }
+size = 18
+
+[mouse]
+bindings = [
+    { mouse = "Right", action = "Paste" }
+]
+
+[keyboard]
+bindings = [
+    { key = "Space", mods = "Control",  action = "ToggleViMode" },
+    { key = "t", mods = "Control | Shift",  action = "CreateNewWindow" },
+    { key = "q", mods = "Control | Shift",  action = "Quit" },
+]

@@ -8,9 +8,9 @@ git.gitsigns = {
     config = function()
         local gitsigns = require('gitsigns')
         local opts = {silent=true, remap=false}
-        vim.keymap.set('n', '<leader>gp', function() gitsigns.preview_hunk_inline() end, opts)
-        vim.keymap.set('n', '<leader>gb', function() gitsigns.blame_line() end, opts)
-        vim.keymap.set('n', '<leader>gd', function() gitsigns.diffthis() end, opts)
+        vim.keymap.set('n', '<leader>gp', function() gitsigns.preview_hunk_inline() end, {silent=true, remap=false, desc="Git改动预览"})
+        vim.keymap.set('n', '<leader>gb', function() gitsigns.blame_line() end, {silent=true, remap=false, desc="Git blame"})
+        vim.keymap.set('n', '<leader>gd', function() gitsigns.diffthis() end, {silent=true, remap=false, desc="Git diff"})
     end
 }
 

@@ -1,11 +1,11 @@
 #!/bin/bash
 
-config_alacritty() {
-    # alacritty配置
-    if [ -d "~/.config/alacritty" ]; then
-        rm -rf ~/.config/alacritty
+config_wezterm() {
+    # wezterm配置
+    if [ -d "~/.config/wezterm" ]; then
+        rm -rf ~/.config/wezterm
     fi
-    cp -r ./alacritty ~/.config/
+    cp -r ./wezterm ~/.config/
 }
 
 config_shartship() {
@@ -43,11 +43,11 @@ config_bash() {
 
 
 echo "请选择配置项: "
-select choice in "alacritty" "starship" "yazi" "neovim" "bash" "all" "exit"; do
+select choice in "wezterm" "starship" "yazi" "neovim" "bash" "all" "exit"; do
     case $choice in
-        "alacritty")
-            echo "配置alacritty"
-            config_alacritty
+        "wezterm")
+            echo "配置wezterm"
+            config_wezterm
             break
             ;;
         "starship")
@@ -72,7 +72,7 @@ select choice in "alacritty" "starship" "yazi" "neovim" "bash" "all" "exit"; do
             ;;
         "all")
             echo "全选"
-            config_alacritty
+            config_wezterm
             config_bash
             config_shartship
             config_yazi

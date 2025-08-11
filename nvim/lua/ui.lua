@@ -171,5 +171,16 @@ ui.notice = {
     },
 }
 
+ui.whichkey = {
+    "folke/which-key.nvim",
+    event = "VeryLazy",
+    opts = {
+        preset = 'helix',
+        triggers = {}
+    },
+    keys = {
+        { "<leader>?", function() require("which-key").show({ global = false }) end, desc = "Whick Key?", },
+    },
+}
 
 return ui

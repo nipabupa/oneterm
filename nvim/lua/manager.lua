@@ -32,6 +32,7 @@ require("lazy").setup({
         ui.lualine,
         ui.neotree,
         ui.notice,
+        ui.whichkey,
         edit.autopairs,
         edit.surround,
         edit.indentblankline,

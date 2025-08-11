@@ -1,8 +1,8 @@
-function config_alacritty {
-    if (Test-Path "$env:APPDATA\\alacritty") {
-        Remove-Item -Path "$env:APPDATA\\alacritty" -Force -Recurse 
+function config_wezterm {
+    if (Test-Path "~\\.config\\wezterm") {
+        Remove-Item -Path "~\\.config\\wezterm" -Force -Recurse 
     }
-    Copy-Item -Path alacritty -Destination "$env:APPDATA\\" -Force -Recurse
+    Copy-Item -Path wezterm -Destination "~\\.config\\" -Force -Recurse
 }
 
 function config_starship {
@@ -39,7 +39,7 @@ function config_yazi {
 
 
 Write-Host "0. all"
-Write-Host "1. alacritty"
+Write-Host "1. wezterm"
 Write-Host "2. starship"
 Write-Host "3. yazi"
 Write-Host "4. neovim"
@@ -47,8 +47,8 @@ Write-Host "5. powershell"
 $userInput = Read-Host "请输入编号"
 
 switch($userInput) {
-    "0" { config_alacritty; config_starship; config_powershell; config_neovim; config_yazi }
-    "1" { config_alacritty }
+    "0" { config_wezterm; config_starship; config_powershell; config_neovim; config_yazi }
+    "1" { config_wezterm }
     "2" { config_starship }
     "3" { config_yazi }
     "4" { config_neovim }

@@ -261,11 +261,16 @@ code.dap = {
                 name = "Launch file",
                 type = "cppdbg",
                 request = "launch",
+                -- 默认调试build/main.exe
                 program = function()
-                    return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+                    if os.getenv('OS') ~= 'Windows' then
+                        return vim.fn.getcwd() .. '\\build\\main.exe'
+                    else
+                        return vim.fn.getcwd() .. '/build/main.out'
+                    end
                 end,
                 cwd = '${workspaceFolder}',
-                stopAtEntry = true,
+                stopAtEntry = false,
             }
         }
         dap.configurations.c = dap.configurations.cpp

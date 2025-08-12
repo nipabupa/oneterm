@@ -1,9 +1,14 @@
 local wezterm = require 'wezterm'
 local config = {}
 
-local is_windows = false
+local is_windows = true
 if wezterm.target_triple == 'x86_64-unknown-linux-gnu' then
-    is_windows = true
+    is_windows = false
+end
+
+-- shell
+if is_windows then
+    config.default_prog = { 'pwsh.exe' }
 end
 
 -- Base
@@ -64,5 +69,14 @@ config.keys = {
         action = wezterm.action.ActivatePaneDirection 'Right',
     }
 }
+
+config.set_environment_variables = {
+    CPP_EXTENSION_DEBUG_BIN = '',
+}
+if is_windows then
+    config.set_environment_variables = {
+        YAZI_FILE_ONE = 'D:\\env\\Git\\usr\\bin\\file.exe'
+    }
+end
 
 return config

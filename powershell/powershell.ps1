@@ -1,6 +1,3 @@
-# yazi
-$env:YAZI_FILE_ONE = "$env:ENV_HOME\\git\\usr\\bin\\file.exe"
-
 ###########################
 # starship
 ###########################
@@ -9,8 +6,8 @@ Invoke-Expression (&starship init powershell)
 ###########################
 # 别名
 ###########################
-Set-Alias -Name vi -Value "$env:ENV_HOME\\nvim-win64\\bin\\nvim.exe"
-Set-Alias -Name vim -Value "$env:ENV_HOME\\nvim-win64\\bin\\nvim.exe"
+Set-Alias -Name vi -Value "nvim"
+Set-Alias -Name vim -Value "nvim"
 
 if(Get-Alias -Name ls -ErrorAction SilentlyContinue) {
     Remove-Alias ls

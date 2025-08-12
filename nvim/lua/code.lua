@@ -37,9 +37,9 @@ code.lspconfig = {
             virtual_text = true,
             signs = {
                 text = { 
-                    [vim.diagnostic.severity.ERROR] = '',
-                    [vim.diagnostic.severity.WARN] = '',
-                    [vim.diagnostic.severity.INFO] = '',
+                    [vim.diagnostic.severity.ERROR] = '',
+                    [vim.diagnostic.severity.WARN] = '',
+                    [vim.diagnostic.severity.INFO] = '',
                     [vim.diagnostic.severity.HINT] = '',
                 }
             },
@@ -254,19 +254,18 @@ code.dap = {
         dap.adapters.cppdbg = {
             id = 'cppdbg',
             type = 'executable',
-            command = '/home/liuzhe/.vscode/extensions/ms-vscode.cpptools-1.26.3-linux-x64/debugAdapters/bin/OpenDebugAD7',
+            command = os.getenv('CPP_EXTENSION_DEBUG_BIN')
         }
         dap.configurations.cpp = {
             {
                 name = "Launch file",
                 type = "cppdbg",
                 request = "launch",
-                -- 默认调试build/main.exe
                 program = function()
-                    if os.getenv('OS') ~= 'Windows' then
-                        return vim.fn.getcwd() .. '\\build\\main.exe'
+                    if os.getenv('OS') == 'Windows_NT' then
+                        return vim.fn.getcwd() .. '\\build\\debug.exe'
                     else
-                        return vim.fn.getcwd() .. '/build/main.out'
+                        return vim.fn.getcwd() .. '/build/debug'
                     end
                 end,
                 cwd = '${workspaceFolder}',

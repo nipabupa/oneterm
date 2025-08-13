@@ -49,6 +49,9 @@ if ! shopt -oq posix; then
   fi
 fi
 
+# 启动starship
+eval "$(starship init bash)"
+
 # some more ls aliases
 alias ll='eza --icons -l'
 alias la='eza --icons -a'
@@ -95,4 +98,20 @@ function venv() {
     fi
 }
 
-eval "$(starship init bash)"
+# C complie & run
+function crun() {
+    if [ ! -f "Makefile" ]; then
+        cmake ..
+        if [ $? -ne 0 ]; then
+            echo "cmake失败"
+            return 1
+        fi
+        echo "cmake完成"
+    fi
+    make
+    if [ $? -eq 0 ]; then
+        ./debug
+    else
+        echo "编译失败"
+    fi
+}

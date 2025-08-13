@@ -13,8 +13,8 @@ end
 
 -- Base
 config.color_scheme = 'OneDark (base16)'
--- config.font = wezterm.font 'DejaVuSansM Nerd Font Mono'
-config.font_size = 18
+-- 根据屏幕分辨率设置，过大过小会导致下方留白
+config.font_size = 17.5
 
 -- Window
 config.window_padding = {

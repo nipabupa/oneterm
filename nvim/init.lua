@@ -63,6 +63,11 @@ vim.keymap.set('n', '<Tab>', ':bn<cr>', opts)
 vim.keymap.set('n', '[', ':tabp<cr>', opts)
 -- 切换下一个tab
 vim.keymap.set('n', ']', ':tabn<cr>', opts)
+-- Windows
+vim.keymap.set('n', '<C-h>', ':wincmd h<cr>', opts)
+vim.keymap.set('n', '<C-j>', ':wincmd j<cr>', opts)
+vim.keymap.set('n', '<C-k>', ':wincmd k<cr>', opts)
+vim.keymap.set('n', '<C-l>', ':wincmd l<cr>', opts)
 --------------------------------
 --关闭buffer
 --    如果是工具窗口，关闭窗口

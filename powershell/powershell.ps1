@@ -59,3 +59,19 @@ function venv {
         ./.venv/Scripts/Activate.ps1
     }
 }
+# C make&run
+function crun {
+    if (!(Test-Path "Makefile")); then
+        cmake -G "MinGW Makefile" ..
+        if (!($?)); then
+            echo "cmake失败"
+            return 1
+        fi
+    fi
+    mingw32-make
+    if ($?) {
+        .\\debug.exe
+    } else {
+        Write-Host "编译失败"
+    }
+}

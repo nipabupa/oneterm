@@ -8,6 +8,10 @@
             {
                 "language": "python",
                 "path": "./python.json"
+            },
+            {
+                "language": "c",
+                "path": "./c.json"
             }
         ]
     }

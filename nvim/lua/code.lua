@@ -1,4 +1,5 @@
 local code = {}
+local utils = require('utils')
 
 
 code.treesistter = {
@@ -254,7 +255,12 @@ code.dap = {
         dap.adapters.cppdbg = {
             id = 'cppdbg',
             type = 'executable',
-            command = os.getenv('CPP_EXTENSION_DEBUG_BIN')
+            command = os.getenv('CPP_EXTENSION_DEBUG_BIN'),
+            options = {
+                detached = function()
+                    return not utils.is_windows
+                end
+            }
         }
         dap.configurations.cpp = {
             {
@@ -262,7 +268,7 @@ code.dap = {
                 type = "cppdbg",
                 request = "launch",
                 program = function()
-                    if os.getenv('OS') == 'Windows_NT' then
+                    if utils.is_windows then
                         return vim.fn.getcwd() .. '\\build\\debug.exe'
                     else
                         return vim.fn.getcwd() .. '/build/debug'
@@ -275,6 +281,7 @@ code.dap = {
         dap.configurations.c = dap.configurations.cpp
     end,
     keys = {
+        {'<F3>', function() require('dap').toggle_breakpoint({condition = vim.fn.input('Condition: ')}) end, desc='设置断点'},
         {'<F4>', function() require('dap').toggle_breakpoint() end, desc='设置断点'},
         {'<F5>', function() require('dap').continue() end, desc='启动继续'},
         {'<F6>', function() require('dap').step_over() end, desc='下一行'},
@@ -315,14 +322,9 @@ code.dapui = {
         dap.listeners.before.launch.dapui_config = function()
           dapui.open()
         end
-        dap.listeners.before.event_terminated.dapui_config = function()
-          dapui.close()
-        end
-        dap.listeners.before.event_exited.dapui_config = function()
-          dapui.close()
-        end
     end,
     keys = {
+        {'<leader>dc', function() require('dapui').close() end, desc='关闭调试UI'},
         {'<leader>dw', function() require('dapui').float_element('watches', {
             width = 80, height = 20, enter = true, position = 'center'
         }) end, desc='打开调试UI-监控'},

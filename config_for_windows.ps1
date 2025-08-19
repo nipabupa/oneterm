@@ -27,6 +27,7 @@ function config_powershell {
         Remove-Item -Path "$PROFILE" -Force
     }
     Copy-Item -Path .\\powershell\\powershell.ps1 -Destination "$PROFILE" -Force
+    . $PROFILE
 }
 
 function config_yazi {

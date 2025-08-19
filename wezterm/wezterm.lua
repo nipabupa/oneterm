@@ -15,6 +15,8 @@ end
 config.color_scheme = 'OneDark (base16)'
 -- 根据屏幕分辨率设置，过大过小会导致下方留白
 config.font_size = 17.5
+-- 根据屏幕分辨率设置，过大过小会导致下方留白
+config.line_height = 1.00
 
 -- Window
 config.window_padding = {

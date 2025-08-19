@@ -1,7 +1,8 @@
 ###########################
-# starship
+# init
 ###########################
 Invoke-Expression (&starship init powershell)
+Invoke-Expression (& { (zoxide init powershell | Out-String) })
 
 ###########################
 # 别名
@@ -61,13 +62,13 @@ function venv {
 }
 # C make&run
 function crun {
-    if (!(Test-Path "Makefile")); then
+    if (!(Test-Path "Makefile")) {
         cmake -G "MinGW Makefile" ..
-        if (!($?)); then
+        if (!($?)) {
             echo "cmake失败"
             return 1
-        fi
-    fi
+        }
+    }
     mingw32-make
     if ($?) {
         .\\debug.exe

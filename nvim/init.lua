@@ -63,28 +63,23 @@ vim.keymap.set('n', '<Tab>', ':bn<cr>', opts)
 vim.keymap.set('n', '[', ':tabp<cr>', opts)
 -- 切换下一个tab
 vim.keymap.set('n', ']', ':tabn<cr>', opts)
+-- Home
+vim.keymap.set({'n', 'i', 'c'}, '<C-a>', '<Home>', opts)
+-- End
+vim.keymap.set({'n', 'i', 'c'}, '<C-e>', '<End>', opts)
 -- Windows
 vim.keymap.set('n', '<C-h>', ':wincmd h<cr>', opts)
 vim.keymap.set('n', '<C-j>', ':wincmd j<cr>', opts)
 vim.keymap.set('n', '<C-k>', ':wincmd k<cr>', opts)
 vim.keymap.set('n', '<C-l>', ':wincmd l<cr>', opts)
---------------------------------
---关闭buffer
---    如果是工具窗口，关闭窗口
---    如果是主窗口，若当前buffer数量大于1，关闭当前buffer
---------------------------------
 vim.keymap.set('n', '<c-q>', function()
-    local id = vim.fn.win_getid()
-    if (id ~= 1000) then
-        -- 关闭非主窗口
-        vim.cmd.quit({bang=true})
-    else
+    local ft = vim.bo.filetype
+    if (ft ~= 'neo-tree') then
         vim.cmd.only()
-        if (#vim.fn.getbufinfo({buflisted = true})) > 1 then
-            vim.cmd.bdelete({bang=true})
-        end
     end
+    vim.cmd.bdelete({bang=true})
 end, opts)
+vim.keymap.set('n', '<leader>q', ':exit<cr>', opts)
 vim.keymap.set('n', '<leader><leader>', function()
     vim.cmd.only()
 end, opts)

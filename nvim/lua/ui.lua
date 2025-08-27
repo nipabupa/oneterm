@@ -35,12 +35,11 @@ ui.bufferline = {
     config = function()
         require('bufferline').setup({
             options = {
-                max_name_length = 10,
-                max_prefix_length = 10,
-                tab_size = 10,
+                truncate_names = false,
+                show_buffer_close_icons = false,
                 diagnostics = false,
                 color_icons = true,
-                separator_style = 'slant',
+                separator_style = 'thin',
                 offsets = {
                     {
                         filetype = 'neo-tree',
@@ -73,8 +72,9 @@ ui.lualine = {
         options = {
             icons_enabled = true,
             theme = 'auto',
-            component_separators = "",
-            section_separators = { left = '', right = '' },
+            component_separators = '|',
+            always_show_tabline = false,
+            section_separators = { left = '', right = ' ' },
             disabled_filetypes = {
                 statusline = { 
                     'neo-tree',
@@ -88,28 +88,34 @@ ui.lualine = {
             },
         },
         sections = {
-            lualine_a = { { 'mode', separator = { left = '' }, right_padding = 2 } },
-            lualine_b = { 'filename', 'branch' },
-            lualine_c = { 'diagnostics' },
-            lualine_x = {'encoding', 'fileformat', 'filetype'},
-            lualine_y = {'progress'},
+            lualine_a = { { 'mode', separator = { left = '', right = '' } } },
+            lualine_b = { { 'branch', icon = '' } },
+            lualine_c = { { 'filename',
+                symbols = {
+                    modified = '',
+                    readonly = ' ',
+                    unnamed = ' ',
+                    newfile = ' ',
+                }
+            }, 'diagnostics' },
+            lualine_x = {'encoding', 'fileformat'},
+            lualine_y = {'filetype', 'progress'},
             lualine_z = {
-              { 'location', separator = { right = '' }, left_padding = 2 },
+              { 'location', separator = { left = '', right = '' }, left_padding = 2 },
             },
         },
-        inactive_sections = {
+        inactive_sections = {
             lualine_a = { 'filename' },
             lualine_b = {},
             lualine_c = {},
             lualine_x = {},
             lualine_y = {},
-            lualine_z = { 'location' },
+            lualine_z = {},
         },
         tabline = {},
         extensions = {},
     }
 }
-
 
 
 -- neotree

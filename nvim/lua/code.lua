@@ -284,6 +284,7 @@ code.dap = {
         {'<F3>', function() require('dap').toggle_breakpoint({condition = vim.fn.input('Condition: ')}) end, desc='设置断点'},
         {'<F4>', function() require('dap').toggle_breakpoint() end, desc='设置断点'},
         {'<F5>', function() require('dap').continue() end, desc='启动继续'},
+        {'<C-F5>', function() require('dap').terminate() end, desc='终止'},
         {'<F6>', function() require('dap').step_over() end, desc='下一行'},
         {'<F7>', function() require('dap').step_into() end, desc='进入'},
         {'<F8>', function() require('dap').step_out() end, desc='跳出'},

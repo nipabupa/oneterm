@@ -80,9 +80,6 @@ vim.keymap.set('n', '<c-q>', function()
     vim.cmd.bdelete({bang=true})
 end, opts)
 vim.keymap.set('n', '<leader>q', ':exit<cr>', opts)
-vim.keymap.set('n', '<leader><leader>', function()
-    vim.cmd.only()
-end, opts)
 
 --------------------------------------------------------------
 -- 插件

@@ -129,9 +129,6 @@ ui.neotree = {
     },
     opts = {
         enable_diagnostics = false,
-        window = {
-            width = 25
-        }
     },
     keys = {
         {"<leader>nn", "<cmd>Neotree filesystem left toggle<cr>", remap=false, desc='打开文件系统'},

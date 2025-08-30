@@ -12,15 +12,18 @@ search.fzflua = {
                 hidden = true,
             },
         },
-        files = {
-            cwd_prompt = false,
-        },
         keymap = {
             builtin = {
                 ["?"] = "toggle-help",
                 ["<C-p>"] = "toggle-preview",
             }
-        }
+        },
+        fzf_opts = {
+            ["--style"] = "minimal"
+        },
+        files = {
+            cwd_prompt = false,
+        },
     },
     keys = {
         -- 文件搜索

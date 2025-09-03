@@ -60,6 +60,8 @@ ui.bufferline = {
         vim.keymap.set('n', "<leader>b6", "<cmd>BufferLineGoToBuffer 6<cr>", {remap=false, desc='跳转Buffer 6'})
         vim.keymap.set('n', "<leader>b6", "<cmd>BufferLineGoToBuffer 6<cr>", {remap=false, desc='跳转Buffer 6'})
         vim.keymap.set('n', "<leader>bc", "<cmd>BufferLineCloseOthers<cr>", {remap=false, desc='关闭其他buffer'})
+        vim.keymap.set('n', "<leader>bl", "<cmd>BufferLineCloseRight<cr>", {remap=false, desc='关闭右边buffer'})
+        vim.keymap.set('n', "<leader>bh", "<cmd>BufferLineCloseLeft<cr>", {remap=false, desc='关闭左边buffer'})
     end
 }
 

@@ -51,6 +51,7 @@ fi
 
 # 启动starship
 eval "$(starship init bash)"
+eval "$(zoxide init bash)"
 
 # some more ls aliases
 alias ll='eza --icons -l'
@@ -92,9 +93,9 @@ function vip() {
 # 启动python虚拟环境
 function venv() {
     if [ -d 'venv' ]; then
-        bash ./venv/bin/activate
+        source ./venv/bin/activate
     elif [ -d '.venv' ]; then
-        bash ./.venv/bin/activate
+        source ./.venv/bin/activate
     fi
 }
 

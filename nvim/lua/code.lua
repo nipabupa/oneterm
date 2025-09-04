@@ -32,7 +32,9 @@ code.diagnostic = {
     event = "VeryLazy",
     priority = 1000,
     config = function()
-        require('tiny-inline-diagnostic').setup()
+        require('tiny-inline-diagnostic').setup({
+            preset = "simple",
+        })
         vim.diagnostic.config({
             virtual_text = false,
             signs = {
@@ -64,8 +66,7 @@ code.blink = {
                 ['<C-i>'] = { 'show', 'fallback' },
                 ['<C-n>'] = { 'select_next', 'fallback' },
                 ['<C-p>'] = { 'select_prev', 'fallback' },
-                ['<CR>'] = { 'select_and_accept' },
-                ['<C-e>'] = { 'cancel' },
+                ['<CR>'] = { 'select_and_accept', 'fallback' },
             },
             completion = { menu = { auto_show = true } },
         },
@@ -74,11 +75,10 @@ code.blink = {
             ['<CR>'] = { 'select_and_accept', 'fallback' },
             ['<Tab>'] = { 'select_and_accept', 'snippet_forward', 'fallback' },
             ['<S-Tab>'] = { 'snippet_backward', 'fallback' },
-            ['<C-k>'] = { 'show_signature', 'hide_signature', 'fallback' },
+            ['<C-m>'] = { 'show_signature', 'hide_signature', 'fallback' },
             ['<C-i>'] = { 'show', 'show_documentation', 'hide_documentation' },
             ['<C-p>'] = { 'select_prev', 'fallback_to_mappings' },
             ['<C-n>'] = { 'select_next', 'fallback_to_mappings' },
-            ['<C-e>'] = { 'hide' },
             ['<C-b>'] = { 'scroll_documentation_up', 'fallback' },
             ['<C-f>'] = { 'scroll_documentation_down', 'fallback' },
         },

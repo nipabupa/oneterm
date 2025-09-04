@@ -63,15 +63,11 @@ vim.keymap.set('n', '<Tab>', ':bn<cr>', opts)
 vim.keymap.set('n', '[', ':tabp<cr>', opts)
 -- 切换下一个tab
 vim.keymap.set('n', ']', ':tabn<cr>', opts)
--- Home
-vim.keymap.set({'n', 'i', 'c'}, '<C-a>', '<Home>', opts)
--- End
-vim.keymap.set({'n', 'i', 'c'}, '<C-e>', '<End>', opts)
 -- Windows
-vim.keymap.set('n', '<C-h>', ':wincmd h<cr>', opts)
-vim.keymap.set('n', '<C-j>', ':wincmd j<cr>', opts)
-vim.keymap.set('n', '<C-k>', ':wincmd k<cr>', opts)
-vim.keymap.set('n', '<C-l>', ':wincmd l<cr>', opts)
+vim.keymap.set('n', '<A-h>', ':wincmd h<cr>', opts)
+vim.keymap.set('n', '<A-j>', ':wincmd j<cr>', opts)
+vim.keymap.set('n', '<A-k>', ':wincmd k<cr>', opts)
+vim.keymap.set('n', '<A-l>', ':wincmd l<cr>', opts)
 vim.keymap.set('n', '<c-q>', function()
     local ft = vim.bo.filetype
     if (ft ~= 'neo-tree') then
@@ -80,7 +76,13 @@ vim.keymap.set('n', '<c-q>', function()
     vim.cmd.bdelete({bang=true})
 end, opts)
 vim.keymap.set('n', '<leader>q', ':exit<cr>', opts)
-vim.keymap.set({'n', 'i', 'x', 'c'}, '<c-space>', '<ESC>', opts)
+-- ESC
+vim.keymap.set({'n', 'i', 'x', 'c'}, '<c-j>', '<ESC>', opts)
+vim.keymap.set({'n', 'i', 'x', 'c'}, '<c-k>', '<ESC>', opts)
+-- Home
+vim.keymap.set({'n', 'i', 'c'}, '<c-h>', '<Home>', opts)
+-- End
+vim.keymap.set({'n', 'i', 'c'}, '<C-l>', '<End>', opts)
 
 --------------------------------------------------------------
 -- 插件

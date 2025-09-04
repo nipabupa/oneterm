@@ -38,20 +38,20 @@ config.keys = {
         mods = 'ALT',
         action = wezterm.action.SplitVertical { domain = 'CurrentPaneDomain' },
     }, {
-        key = 'k',
-        mods = 'ALT',
+        key = 'UpArrow',
+        mods = 'CTRL',
         action = wezterm.action.AdjustPaneSize { "Up", 1 },
     }, {
-        key = 'j',
-        mods = 'ALT',
+        key = 'DownArrow',
+        mods = 'CTRL',
         action = wezterm.action.AdjustPaneSize { "Down", 1 },
     }, {
-        key = 'h',
-        mods = 'ALT',
+        key = 'LeftArrow',
+        mods = 'CTRL',
         action = wezterm.action.AdjustPaneSize { "Left", 1 },
     }, {
-        key = 'l',
-        mods = 'ALT',
+        key = 'RightArrow',
+        mods = 'CTRL',
         action = wezterm.action.AdjustPaneSize { "Right", 1 },
     }, {
         key = 'k',

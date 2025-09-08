@@ -76,13 +76,19 @@ vim.keymap.set('n', '<c-q>', function()
     vim.cmd.bdelete({bang=true})
 end, opts)
 vim.keymap.set('n', '<leader>q', ':exit<cr>', opts)
+-- 方向
+vim.keymap.set({'n', 'i', 'x', 'c'}, '<c-h>', '<left>', opts)
+vim.keymap.set({'n', 'i', 'x', 'c'}, '<c-j>', '<down>', opts)
+vim.keymap.set({'n', 'i', 'x', 'c'}, '<c-k>', '<up>', opts)
+vim.keymap.set({'n', 'i', 'x', 'c'}, '<c-l>', '<right>', opts)
 -- ESC
-vim.keymap.set({'n', 'i', 'x', 'c'}, '<c-j>', '<ESC>', opts)
-vim.keymap.set({'n', 'i', 'x', 'c'}, '<c-k>', '<ESC>', opts)
+vim.keymap.set({'n', 'i', 'x', 'c'}, '<c-;>', '<esc>', opts)
+vim.keymap.set({'n', 'i', 'x', 'c'}, '<c-i>', '<esc>', opts)
+vim.keymap.set({'n', 'i', 'x', 'c'}, '<c-o>', '<esc>', opts)
 -- Home
-vim.keymap.set({'n', 'i', 'c'}, '<c-h>', '<Home>', opts)
+vim.keymap.set({'n', 'i', 'c'}, '<c-a>', '<Home>', opts)
 -- End
-vim.keymap.set({'n', 'i', 'c'}, '<C-l>', '<End>', opts)
+vim.keymap.set({'n', 'i', 'c'}, '<c-e>', '<End>', opts)
 
 --------------------------------------------------------------
 -- 插件

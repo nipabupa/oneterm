@@ -63,10 +63,8 @@ code.blink = {
                 preset = 'none',
                 ['<Tab>'] = { 'show_and_insert', 'select_next' },
                 ['<S-Tab>'] = { 'show_and_insert', 'select_prev' },
-                ['<C-i>'] = { 'show', 'fallback' },
                 ['<C-n>'] = { 'select_next', 'fallback' },
                 ['<C-p>'] = { 'select_prev', 'fallback' },
-                ['<CR>'] = { 'select_and_accept', 'fallback' },
             },
             completion = { menu = { auto_show = true } },
         },
@@ -75,12 +73,8 @@ code.blink = {
             ['<CR>'] = { 'select_and_accept', 'fallback' },
             ['<Tab>'] = { 'select_and_accept', 'snippet_forward', 'fallback' },
             ['<S-Tab>'] = { 'snippet_backward', 'fallback' },
-            ['<C-m>'] = { 'show_signature', 'hide_signature', 'fallback' },
-            ['<C-i>'] = { 'show', 'show_documentation', 'hide_documentation' },
             ['<C-p>'] = { 'select_prev', 'fallback_to_mappings' },
             ['<C-n>'] = { 'select_next', 'fallback_to_mappings' },
-            ['<C-b>'] = { 'scroll_documentation_up', 'fallback' },
-            ['<C-f>'] = { 'scroll_documentation_down', 'fallback' },
         },
         appearance = {
             kind_icons = {
@@ -174,24 +168,14 @@ code.dap = {
             id = 'cppdbg',
             type = 'executable',
             command = os.getenv('CPP_EXTENSION_DEBUG_BIN'),
-            options = {
-                detached = function()
-                    return not utils.is_windows
-                end
-            }
+            options = not utils.is_windows,
         }
         dap.configurations.cpp = {
             {
                 name = "Launch file",
                 type = "cppdbg",
                 request = "launch",
-                program = function()
-                    if utils.is_windows then
-                        return vim.fn.getcwd() .. '\\build\\debug.exe'
-                    else
-                        return vim.fn.getcwd() .. '/build/debug'
-                    end
-                end,
+                program = utils.is_windows and vim.fn.getcwd() .. '\\build\\debug.exe' or vim.fn.getcwd() .. '/build/debug',
                 cwd = '${workspaceFolder}',
                 stopAtEntry = false,
             }
@@ -202,7 +186,7 @@ code.dap = {
         {'<F3>', function() require('dap').toggle_breakpoint({condition = vim.fn.input('Condition: ')}) end, desc='设置断点'},
         {'<F4>', function() require('dap').toggle_breakpoint() end, desc='设置断点'},
         {'<F5>', function() require('dap').continue() end, desc='启动继续'},
-        {'<C-F5>', function() require('dap').terminate() end, desc='终止'},
+        {'<F12>', function() require('dap').terminate() end, desc='终止'},
         {'<F6>', function() require('dap').step_over() end, desc='下一行'},
         {'<F7>', function() require('dap').step_into() end, desc='进入'},
         {'<F8>', function() require('dap').step_out() end, desc='跳出'},

@@ -83,8 +83,6 @@ vim.keymap.set({'n', 'i', 'x', 'c'}, '<c-k>', '<up>', opts)
 vim.keymap.set({'n', 'i', 'x', 'c'}, '<c-l>', '<right>', opts)
 -- ESC
 vim.keymap.set({'n', 'i', 'x', 'c'}, '<c-;>', '<esc>', opts)
-vim.keymap.set({'n', 'i', 'x', 'c'}, '<c-i>', '<esc>', opts)
-vim.keymap.set({'n', 'i', 'x', 'c'}, '<c-o>', '<esc>', opts)
 -- Home
 vim.keymap.set({'n', 'i', 'c'}, '<c-a>', '<Home>', opts)
 -- End

@@ -61,6 +61,7 @@ code.blink = {
             enabled = true,
             keymap = {
                 preset = 'none',
+                ['<CR>'] = { 'select_accept_and_enter', 'fallback' },
                 ['<Tab>'] = { 'show_and_insert', 'select_next' },
                 ['<S-Tab>'] = { 'show_and_insert', 'select_prev' },
                 ['<C-n>'] = { 'select_next', 'fallback' },

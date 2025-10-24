@@ -74,20 +74,21 @@ ui.lualine = {
         options = {
             icons_enabled = true,
             theme = 'auto',
+            globalstatus = true,
             component_separators = '|',
             always_show_tabline = false,
             section_separators = { left = '', right = ' ' },
-            disabled_filetypes = {
-                statusline = { 
-                    'neo-tree',
-                    'dapui_watches',
-                    'dapui_stacks',
-                    'dapui_breakpoints',
-                    'dapui_scopes',
-                    'dap-repl',
-                },
-                winbar = {},
-            },
+            -- disabled_filetypes = {
+            --     statusline = { 
+            --         'neo-tree',
+            --         'dapui_watches',
+            --         'dapui_stacks',
+            --         'dapui_breakpoints',
+            --         'dapui_scopes',
+            --         'dap-repl',
+            --     },
+            --     winbar = {},
+            -- },
         },
         sections = {
             lualine_a = { { 'mode', separator = { left = '', right = '' } } },

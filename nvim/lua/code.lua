@@ -169,7 +169,9 @@ code.dap = {
             id = 'cppdbg',
             type = 'executable',
             command = os.getenv('CPP_EXTENSION_DEBUG_BIN'),
-            options = not utils.is_windows,
+            options = {
+                detached = not utils.is_windows,
+            },
         }
         dap.configurations.cpp = {
             {
@@ -179,6 +181,13 @@ code.dap = {
                 program = utils.is_windows and vim.fn.getcwd() .. '\\build\\debug.exe' or vim.fn.getcwd() .. '/build/debug',
                 cwd = '${workspaceFolder}',
                 stopAtEntry = false,
+                setupCommands = {  
+                    { 
+                        text = '-enable-pretty-printing',
+                        description =  'enable pretty printing',
+                        ignoreFailures = false 
+                    },
+                },
             }
         }
         dap.configurations.c = dap.configurations.cpp

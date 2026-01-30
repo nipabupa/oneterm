@@ -43,6 +43,8 @@ vim.opt.clipboard     = 'unnamedplus'       -- 使用系统剪切板
 vim.opt.hidden        = true                -- buf隐藏（终端）
 vim.opt.completeopt   = 'menuone,noselect'  -- compe
 
+---- 设置CC为GCC
+vim.env.CC = "gcc"
 
 --------------------------------------------------------------
 -- 全局键盘映射

@@ -6,12 +6,9 @@ code.treesistter = {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
     config = function ()
-        local configs = require("nvim-treesitter.configs")
-        configs.setup({
-            ensure_installed = { "lua", "python" },
-            sync_install = false,
-            highlight = { enable = true },
-            indent = { enable = true },
+        vim.api.nvim_create_autocmd('FileType', {
+          pattern = { 'lua', 'python' },
+          callback = function() vim.treesitter.start() end,
         })
     end
 }
@@ -61,7 +58,7 @@ code.blink = {
             enabled = true,
             keymap = {
                 preset = 'none',
-                ['<CR>'] = { 'select_accept_and_enter', 'fallback' },
+                ['<CR>'] = { 'select_and_accept', 'fallback' },
                 ['<Tab>'] = { 'show_and_insert', 'select_next' },
                 ['<S-Tab>'] = { 'show_and_insert', 'select_prev' },
                 ['<C-n>'] = { 'select_next', 'fallback' },
@@ -74,8 +71,8 @@ code.blink = {
             ['<CR>'] = { 'select_and_accept', 'fallback' },
             ['<Tab>'] = { 'select_and_accept', 'snippet_forward', 'fallback' },
             ['<S-Tab>'] = { 'snippet_backward', 'fallback' },
-            ['<C-p>'] = { 'select_prev', 'fallback_to_mappings' },
-            ['<C-n>'] = { 'select_next', 'fallback_to_mappings' },
+            ['<C-k>'] = { 'select_prev', 'fallback_to_mappings' },
+            ['<C-j>'] = { 'select_next', 'fallback_to_mappings' },
         },
         appearance = {
             kind_icons = {

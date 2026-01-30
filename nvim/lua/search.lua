@@ -37,7 +37,7 @@ search.fzflua = {
         {'<leader>fk', function() require('fzf-lua').keymaps() end, desc="查询快捷键"},
         {'<leader>fm', function() require('fzf-lua').marks() end, desc="查询mark"},
         {'<leader>fc', function() require('fzf-lua').commands() end, desc="查询命令"},
-        {'<leader>fe', function() require('fzf-lua').resume() end, desc="重复上一次"},
+        {'<leader>fl', function() require('fzf-lua').resume() end, desc="重复上一次"},
         -- 符号查询
         {'<leader>sd', function() require('fzf-lua').lsp_document_symbols() end, desc="查询当前文档符号"},
         {'<leader>sg', function() require('fzf-lua').lsp_live_workspace_symbols() end, desc="查询工作区符号"},

@@ -1,0 +1,8 @@
+command = fish
+
+theme = Catppuccin Frappe
+font-family = "DejaVuSansM Nerd Font Mono"
+font-size = 23
+background-opacity = 0.9
+background-blur = true
+window-decoration = true

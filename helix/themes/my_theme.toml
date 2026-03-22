@@ -1,0 +1,16 @@
+inherits = "catppuccin_macchiato"
+
+"ui.statusline.normal" = { fg = "black_text", bg = "statusline_normal", modifiers = ["bold"] }
+"ui.statusline.insert" = { fg = "black_text", bg = "statusline_insert", modifiers = ["bold"] }
+"ui.statusline.select" = { fg = "black_text", bg = "statusline_select", modifiers = ["bold"] }
+"ui.statusline.separator" = "separator"
+
+[palette]
+ui_main_text = "#CFD3DC"
+ui_tips_text = "#A3A6AD"
+
+black_text = "#424243"
+separator = "#777777"
+statusline_normal = "#61AFEF"
+statusline_insert = "#98C379"
+statusline_select = "#56B6C2"

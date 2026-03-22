@@ -1,0 +1,68 @@
+theme = "my_theme"
+
+[editor]
+color-modes = true
+text-width = 200
+default-line-ending = "lf"
+end-of-line-diagnostics = "hint"
+popup-border = "all"
+bufferline = "multiple"
+
+[editor.statusline]
+left = ["mode", "spacer", "version-control", "file-base-name", "read-only-indicator", "file-modification-indicator"]
+center = ["spinner", "diagnostics"]
+right = ["file-type", "separator", "file-encoding", "file-line-ending", "separator", "position", "position-percentage", "spacer"]
+separator = "󰇝"
+mode.normal = "󰱫 NORMAL"
+mode.insert = "󰱨 INSERT"
+mode.select = "󰱲 SELECT"
+diagnostics = ["info", "warning", "error"]
+
+[editor.cursor-shape]
+normal = "block"
+insert = "bar"
+select = "underline"
+
+[editor.whitespace.render]
+space = "all"
+tab = "all"
+nbsp = "none"
+nnbsp = "none"
+newline = "all"
+
+[editor.whitespace.characters]
+space = "·"
+nbsp = "⍽"
+nnbsp = "␣"
+tab = "→"
+newline = "⏎"
+tabpad = "·"
+
+[editor.indent-guides]
+render = true
+character = "⸽"
+skip-levels = 1
+
+[editor.inline-diagnostics]
+cursor-line = "warning"
+
+[keys.normal]
+C-s = ":w"
+C-z = "save_selection"
+"C-/" = "toggle_comments"
+C-q = ":buffer-close!"
+tab = ":buffer-next"
+S-tab = ":buffer-previous"
+ 
+[keys.insert]
+"C-;" = "normal_mode"
+C-c = "normal_mode"
+C-l = "move_char_right"
+C-h = "move_char_left"
+C-j = "move_visual_line_down"
+C-k = "move_visual_line_up"
+
+[keys.select]
+"C-;" = "normal_mode"
+C-c = "normal_mode"
+

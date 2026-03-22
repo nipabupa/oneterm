@@ -107,7 +107,7 @@ ui.lualine = {
               { 'location', separator = { left = '', right = '' }, left_padding = 2 },
             },
         },
-        inactive_sections = {
+        inactive_sections = {
             lualine_a = { 'filename' },
             lualine_b = {},
             lualine_c = {},

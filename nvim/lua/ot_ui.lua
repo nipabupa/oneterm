@@ -1,37 +1,42 @@
 local ui = {}
+local url_prefix = "https://xget.xi-xu.me/gh/"
 
+
+ui.icons = {
+    "nvim-mini/mini.icons",
+    opts = {},
+}
 
 -- 主题
 ui.colorscheme = {
-    "navarasu/onedark.nvim",
-    priority = 1000,
+    "catppuccin/nvim",
     config = function()
-        require('onedark').setup {
-            style = 'cool'
-        }
-        -- Enable theme
-        require('onedark').load()
+        vim.cmd.colorscheme "catppuccin-nvim"
+        require("catppuccin").setup({
+            flavour = "frappe",  -- latte, frappe, macchiato, mocha
+            transparent_background = true
+        })
     end
 }
 
 
 -- 启动界面
 ui.startup = {
-    'goolord/alpha-nvim',
-    dependencies = {
-        'nvim-tree/nvim-web-devicons',
-    },
+    "goolord/alpha-nvim",
     config = function ()
-        require'alpha'.setup(require'alpha.themes.startify'.config)
+        local startify = require("alpha.themes.startify")
+        -- available: devicons, mini, default is mini
+        -- if provider not loaded and enabled is true, it will try to use another provider
+        startify.file_icons.provider = "mini"
+        require("alpha").setup(startify.config)
     end
 };
 
 
 -- bufferline
 ui.bufferline = {
-    'akinsho/bufferline.nvim',
+    "akinsho/bufferline.nvim",
     version = "*",
-    dependencies = 'nvim-tree/nvim-web-devicons',
     config = function()
         require('bufferline').setup({
             options = {
@@ -40,15 +45,7 @@ ui.bufferline = {
                 diagnostics = false,
                 color_icons = true,
                 separator_style = 'thin',
-                offsets = {
-                    {
-                        filetype = 'neo-tree',
-                        text = 'Files',
-                        text_align = 'center',
-                        hightlight = 'Directory',
-                        separator = true
-                    }
-                },
+                offsets = { },
             },
         })
         vim.keymap.set('n', "<leader>bp", "<cmd>BufferLineTogglePin<cr>", {remap=false, desc='固定Buffer'})
@@ -68,8 +65,7 @@ ui.bufferline = {
 
 -- lualine
 ui.lualine = {
-    'nvim-lualine/lualine.nvim',
-    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    "nvim-lualine/lualine.nvim",
     opts = {
         options = {
             icons_enabled = true,
@@ -78,17 +74,11 @@ ui.lualine = {
             component_separators = '|',
             always_show_tabline = false,
             section_separators = { left = '', right = ' ' },
-            -- disabled_filetypes = {
-            --     statusline = { 
-            --         'neo-tree',
-            --         'dapui_watches',
-            --         'dapui_stacks',
-            --         'dapui_breakpoints',
-            --         'dapui_scopes',
-            --         'dap-repl',
-            --     },
-            --     winbar = {},
-            -- },
+            disabled_filetypes = {
+                statusline = { 
+                },
+                winbar = {},
+            },
         },
         sections = {
             lualine_a = { { 'mode', separator = { left = '', right = '' } } },
@@ -121,31 +111,10 @@ ui.lualine = {
 }
 
 
--- neotree
-ui.neotree = {
-    "nvim-neo-tree/neo-tree.nvim",
-    branch = "v3.x",
-    dependencies = {
-        "nvim-lua/plenary.nvim",
-        "nvim-tree/nvim-web-devicons",
-        "MunifTanjim/nui.nvim",
-    },
-    opts = {
-        enable_diagnostics = false,
-    },
-    keys = {
-        {"<leader>nn", "<cmd>Neotree filesystem left toggle<cr>", remap=false, desc='打开文件系统'},
-        {"<leader>nb", "<cmd>Neotree buffers float toggle<cr>", remap=false, desc='打开当前buffer列表'},
-        {"<leader>ng", "<cmd>Neotree git_status float toggle<cr>", remap=false, desc='打开当前git改动列表'},
-        {"<leader>nf", "<cmd>Neotree filesystem reveal left<cr>", remap=false, desc='定位到当前文件'},
-    }
-}
-
-
 ui.notice = {
     "folke/noice.nvim",
     dependencies = {
-        "MunifTanjim/nui.nvim",
+        "MunifTanjim/nui.nvim"
     },
     event = "VeryLazy",
     opts = {

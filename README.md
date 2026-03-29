@@ -1,9 +1,11 @@
-# myterm
+# oneterm
 
 ## 介绍
 俺滴终端
 
 ![img1](./imgs/1.png)
+
+### Niri + DankLinux
 
 ![img2](./imgs/2.png)
 
@@ -11,37 +13,26 @@
 
 ![img4](./imgs/4.png)
 
+### Neovim
+
 ![img5](./imgs/5.png)
 
-## 功能
+Blink补全
 
-#### Powershell
+![img6](./imgs/6.png)
 
-- WindowsTerminal
-- Nerdfont
-- rg: 字符串搜索
-- fd: 文件搜索
-- fzf: 交互式搜索
-- yazi: 终端文件管理
+文件树
 
-#### Neovim:
+![img7](./imgs/7.png)
 
-- 侧边文件树
-- 自定义状态栏
-- Buffer页签
-- 命令框UI、搜索框UI
-- FZF搜索：字符串、文件、LSP相关、Buffer、Mark等
-- 快速跳转
-- LSP补全：Python
-- Lint: flake8
-- 自定义代码段
-- Git：代码改动标识、Git管理界面
+模糊搜索
 
-#### 安装教程
+![img8](./imgs/8.png)
 
-见[]()
+命令行补全
 
-#### 使用说明
+![img9](./imgs/9.png)
 
-见[]()
+Debug
 
+![img10](./imgs/10.png)

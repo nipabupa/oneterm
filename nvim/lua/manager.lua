@@ -2,8 +2,8 @@ local ui = require('ot_ui')
 local edit = require('ot_edit')
 local workflow = require('ot_workflow')
 local lsp = require('ot_lsp')
--- local dap = require('ot_dap')
 local git = require('ot_git')
+local dap = require('ot_dap')
 
 -- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -38,6 +38,9 @@ require("lazy").setup({
         edit.surround,
         edit.indent,
         edit.comment,
+        edit.highlight,
+        edit.ai,
+        edit.extra,
         workflow.files,
         workflow.pick,
         workflow.flash,
@@ -47,6 +50,8 @@ require("lazy").setup({
         lsp.blink,
         git.gitsigns,
         git.neogit,
+        dap.dap,
+        dap.dapview,
     },
     checker = { enabled = false },
 })

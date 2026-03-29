@@ -1,5 +1,108 @@
 local M = {}
 
+local is_windows = os.getenv('OS') == 'Windows_NT'
+
+local function config_for_c_cpp_rust()
+    -- MSVC 使用vscode-cpptoosl
+    -- GNU 使用codelldb
+    local dap = require('dap')
+    dap.adapters.cppdbg = {
+        id = 'cppdbg',
+        type = 'executable',
+        command = 'OpenDebugAD7',
+        options = {
+            detached = not is_windows,
+        }
+    }
+    dap.adapters.codelldb = {
+        type = 'server',
+        port = "${port}",
+        executable = {
+            command = 'codelldb',
+            args = {"--port", "${port}"},
+            detached = not is_windows,
+        }
+    }
+    dap.configurations.cpp = {
+        {
+            name = "LaunchDebugLLDB",
+            type = "codelldb",
+            request = "launch",
+            -- 指定调试debug
+            program = is_windows and vim.fn.getcwd() .. '\\build\\debug.exe' or vim.fn.getcwd() .. '/build/debug',
+            cwd = '${workspaceFolder}',
+            stopAtEntry = false,
+            setupCommands = {
+                {
+                    text = '-enable-pretty-printing',
+                    description =  'enable pretty printing',
+                    ignoreFailures = false
+                },
+            },
+        }, {
+            name = "LaunchCustomLLDB",
+            type = "codelldb",
+            request = "launch",
+            -- 自定义调试
+            program = function()
+                if is_windows then
+                    return vim.fn.getcwd() .. '\\' .. vim.fn.input(" ")
+                else
+                    return vim.fn.getcwd() .. '/' .. vim.fn.input(" ")
+                end
+            end,
+            cwd = '${workspaceFolder}',
+            stopAtEntry = false,
+            setupCommands = {
+                {
+                    text = '-enable-pretty-printing',
+                    description =  'enable pretty printing',
+                    ignoreFailures = false
+                },
+            },
+        }, {
+            name = "LaunchDebugCPPTools",
+            type = "cppdbg",
+            request = "launch",
+            -- 指定调试debug
+            program = is_windows and vim.fn.getcwd() .. '\\build\\debug.exe' or vim.fn.getcwd() .. '/build/debug',
+            cwd = '${workspaceFolder}',
+            stopAtEntry = false,
+            setupCommands = {
+                {
+                    text = '-enable-pretty-printing',
+                    description = 'enable pretty printing',
+                    ignoreFailures = false
+                },
+            },
+        }, {
+            name = "LaunchCustomCPPTools",
+            type = "cppdbg",
+            request = "launch",
+            -- 自定义调试
+            program = function()
+                if is_windows then
+                    return vim.fn.getcwd() .. '\\' .. vim.fn.input(" ")
+                else
+                    return vim.fn.getcwd() .. '/' .. vim.fn.input(" ")
+                end
+            end,
+            cwd = '${workspaceFolder}',
+            stopAtEntry = false,
+            setupCommands = {
+                {
+                    text = '-enable-pretty-printing',
+                    description =  'enable pretty printing',
+                    ignoreFailures = false
+                },
+            },
+        }
+    }
+    dap.configurations.c = dap.configurations.cpp
+    dap.configurations.rust = dap.configurations.cpp
+end
+
+
 M.dap = {
     'mfussenegger/nvim-dap',
     event = "VeryLazy",
@@ -13,34 +116,7 @@ M.dap = {
         vim.fn.sign_define('DapStopped', {text='', texthl='Substitute', linehl='', numhl=''})
         -- Python
         require('dap-python').setup('python')
-        -- C
-        local dap = require('dap')
-        dap.adapters.cppdbg = {
-            id = 'cppdbg',
-            type = 'executable',
-            command = os.getenv('CPP_EXTENSION_DEBUG_BIN'),
-            options = {
-                detached = not utils.is_windows,
-            },
-        }
-        dap.configurations.cpp = {
-            {
-                name = "Launch file",
-                type = "cppdbg",
-                request = "launch",
-                program = utils.is_windows and vim.fn.getcwd() .. '\\build\\debug.exe' or vim.fn.getcwd() .. '/build/debug',
-                cwd = '${workspaceFolder}',
-                stopAtEntry = false,
-                setupCommands = {  
-                    { 
-                        text = '-enable-pretty-printing',
-                        description =  'enable pretty printing',
-                        ignoreFailures = false 
-                    },
-                },
-            }
-        }
-        dap.configurations.c = dap.configurations.cpp
+        config_for_c_cpp_rust()
     end,
     keys = {
         {'<F3>', function() require('dap').toggle_breakpoint({condition = vim.fn.input('Condition: ')}) end, desc='设置断点'},
@@ -59,8 +135,6 @@ M.dapview = {
     "igorlfs/nvim-dap-view",
     lazy = false,
     version = "1.*",
-    ---@module 'dap-view'
-    ---@type dapview.Config
     opts = {},
     keys = {
         {'<F1>', function() require('dap-view').toggle() end, desc='打开关闭调试器'},

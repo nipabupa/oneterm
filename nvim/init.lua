@@ -56,7 +56,7 @@ vim.keymap.set({'n', 'x'}, ' ', '', opts)
 -- 保存
 vim.keymap.set('n', '<C-s>', ':w<cr>', opts)
 -- 清除高亮
-vim.keymap.set('n', '<leader>c', ':noh<cr>', opts)
+vim.keymap.set('n', '<C-z>', ':noh<cr>', opts)
 -- 切换上一个buffer
 vim.keymap.set('n', '<S-Tab>', ':bp<cr>', opts)
 -- 切换下一个buffer

@@ -9,7 +9,6 @@ M.pairs = {
     opts = {},
 }
 
-
 M.surround = {
     'nvim-mini/mini.surround',
     version = '*',
@@ -17,14 +16,12 @@ M.surround = {
     opts = {},
 }
 
-
--- 换行支持
+-- 缩进支持
 M.indent = {
     'nvim-mini/mini.indentscope',
     version = '*',
     opts = {},
 }
-
 
 -- 注释
 M.comment = {
@@ -34,5 +31,27 @@ M.comment = {
     opts = {},
 }
 
+M.extra = {
+    'nvim-mini/mini.extra',
+    version = '*',
+    event = "VeryLazy",
+    opts = {},
+}
+
+-- 特殊字符高亮
+M.highlight = {
+    'nvim-mini/mini.hipatterns',
+    version = '*',
+    event = "VeryLazy",
+    opts = {},
+}
+
+-- ai增强
+M.ai = {
+    'nvim-mini/mini.ai',
+    version = '*',
+    event = "VeryLazy",
+    opts = {},
+}
 
 return M

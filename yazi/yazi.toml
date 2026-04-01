@@ -1,7 +1,7 @@
 [opener]
 edit = [
 	{ run = "nvim %0", desc = 'Edit with nvim',  block = true, for = "windows" },
-	{ run = "nvim $0", desc = 'Edit with nvim',  block = true, for = "linux" },
+	{ run = "nvim $0", desc = 'Edit with nvim',  block = true, for = "unix" },
 ]
 open = [
 	{ run = 'start "%0"', desc = "Open", block = false, for = "windows" },

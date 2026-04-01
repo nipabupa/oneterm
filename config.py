@@ -11,6 +11,7 @@ home = str(home_env)
 
 
 def config_for_neovim(is_windows: bool):
+    print("配置Neovim")
     if is_windows:
         config_dir = os.path.join(home, "AppData\\Local\\nvim")
     else:
@@ -21,6 +22,7 @@ def config_for_neovim(is_windows: bool):
 
 
 def config_for_starship(is_windows: bool):
+    print("配置Starship")
     if is_windows:
         config_file = os.path.join(home, ".config\\starship.toml")
     else:
@@ -31,6 +33,7 @@ def config_for_starship(is_windows: bool):
 
 
 def config_for_wezterm(is_windows: bool):
+    print("配置wezterm")
     if is_windows:
         config_dir = os.path.join(home, ".config\\wezterm")
     else:
@@ -41,6 +44,7 @@ def config_for_wezterm(is_windows: bool):
 
 
 def config_for_ghostty():
+    print("配置ghostty")
     config_dir = os.path.join(home, ".config/ghostty")
     if os.path.isdir(config_dir):
         shutil.rmtree(config_dir)
@@ -48,6 +52,7 @@ def config_for_ghostty():
 
 
 def config_for_niri():
+    print("配置niri")
     config_dir = os.path.join(home, ".config/niri")
     if os.path.isdir(config_dir):
         shutil.rmtree(config_dir)
@@ -55,6 +60,7 @@ def config_for_niri():
 
 
 def config_for_glazewm():
+    print("配置glazewm")
     config_dir = os.path.join(home, ".config/.glzr/glazewm")
     if os.path.isdir(config_dir):
         shutil.rmtree(config_dir)
@@ -62,6 +68,7 @@ def config_for_glazewm():
 
 
 def config_for_yazi(is_windows: bool):
+    print("配置yazi")
     if is_windows:
         config_dir = os.path.join(home, ".config\\yazi")
     else:
@@ -72,6 +79,7 @@ def config_for_yazi(is_windows: bool):
 
 
 def config_for_fish():
+    print("配置Fish")
     config_dir = os.path.join(home, ".config/fish")
     if os.path.isdir(config_dir):
         shutil.rmtree(config_dir)
@@ -79,6 +87,7 @@ def config_for_fish():
 
 
 def config_for_powershell():
+    print("配置powershell")
     config_file = os.environ.get('PROFILE')
     if config_file is not None:
         if os.path.isfile(config_file):

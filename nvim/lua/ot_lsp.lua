@@ -66,6 +66,8 @@ M.lspconfig = {
         vim.lsp.enable('clangd')
         -- rust
         vim.lsp.enable('rust-analyzer')
+        -- qml
+        vim.lsp.enable('qmlls')
     end
 }
 

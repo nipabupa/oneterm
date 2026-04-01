@@ -29,12 +29,10 @@ function ll {
 function vif {
     vim $(fd --type f --exclude "venv" --exclude "__pycache__" | fzf --layout=reverse --preview 'bat --color=always {}' --preview-window '~3')
 }
-
 # fzf搜索目录并进入该路径
 function cdf {
     cd $(fd --type d --exclude "venv" --exclude "__pycache__" | fzf --layout=reverse)
 }
-
 # fzf搜索文件并使用windows默认程序打开
 function stf {
     start $(fd --type f --exclude "venv" --exclude "__pycache__" | fzf --layout=reverse)
@@ -61,7 +59,7 @@ function venv {
     }
 }
 # C make&run
-function crun {
+function mk {
     if (!(Test-Path "Makefile")) {
         cmake -G "MinGW Makefile" ..
         if (!($?)) {
@@ -70,6 +68,22 @@ function crun {
         }
     }
     mingw32-make
+    if ($?) {
+        .\\debug.exe
+    } else {
+        Write-Host "编译失败"
+    }
+}
+# C ninja&run
+function nj {
+    if (!(Test-Path "build.ninja")) {
+        cmake -G "Ninja" ..
+        if (!($?)) {
+            echo "cmake失败"
+            return 1
+        }
+    }
+    ninja
     if ($?) {
         .\\debug.exe
     } else {

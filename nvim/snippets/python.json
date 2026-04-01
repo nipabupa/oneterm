@@ -2,7 +2,7 @@
     "type_ignore": {
         "prefix": "ign",
         "body": [
-            "  # type: ignore"
+            " # type: ignore"
         ]
     },
     "pydoc": {

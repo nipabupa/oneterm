@@ -32,6 +32,7 @@ M.pick = {
         { "<leader>k", mode = { "n", "x", "o" }, function() MiniExtra.pickers.keymaps() end, desc = "快捷键查找" },
         { "<leader>h", mode = { "n", "x", "o" }, function() MiniExtra.pickers.history() end, desc = "历史命令查找" },
         { "<leader>p", mode = { "n", "x", "o" }, function() MiniExtra.pickers.hipatterns() end, desc = "特殊高亮查找" },
+        { "<leader>r", mode = { "n", "x", "o" }, function() MiniExtra.pickers.registers() end, desc = "寄存器查找" },
     }
 }
 

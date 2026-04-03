@@ -1,9 +1,18 @@
 # oneterm
 
 ## 介绍
-俺滴终端
+俺滴桌面与终端（丢掉鼠标🐀，拥抱⌨️）
 
 ![img1](./imgs/1.png)
+
+- Windows + ArchLinux
+- 滚动平铺窗口合成器
+- 终端美化
+- Neovim配置
+- 浏览器vim配置
+
+[安装](./install.md)
+[keymap全集](./keymap.md)
 
 ### Niri + DankLinux
 

@@ -54,4 +54,20 @@ M.ai = {
     opts = {},
 }
 
+-- 对齐
+M.align = {
+    'nvim-mini/mini.align',
+    version = '*',
+    event = "VeryLazy",
+    opts = {},
+}
+
+-- 快速分行
+M.splitjoin = {
+    'nvim-mini/mini.splitjoin',
+    version = '*',
+    event = "VeryLazy",
+    opts = {},
+}
+
 return M

@@ -1,6 +1,4 @@
 local ui = {}
-local url_prefix = "https://xget.xi-xu.me/gh/"
-
 
 ui.icons = {
     "nvim-mini/mini.icons",
@@ -11,14 +9,13 @@ ui.icons = {
 ui.colorscheme = {
     "catppuccin/nvim",
     config = function()
-        vim.cmd.colorscheme "catppuccin-nvim"
         require("catppuccin").setup({
             flavour = "frappe",  -- latte, frappe, macchiato, mocha
             transparent_background = true
         })
+        vim.cmd.colorscheme "catppuccin-nvim"
     end
 }
-
 
 -- 启动界面
 ui.startup = {
@@ -31,7 +28,6 @@ ui.startup = {
         require("alpha").setup(startify.config)
     end
 };
-
 
 -- bufferline
 ui.bufferline = {

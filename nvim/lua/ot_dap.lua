@@ -119,7 +119,7 @@ M.dap = {
         config_for_c_cpp_rust()
     end,
     keys = {
-        {'<F3>', function() require('dap').toggle_breakpoint({condition = vim.fn.input('Condition: ')}) end, desc='设置断点'},
+        {'<F3>', function() require('dap').toggle_breakpoint(vim.fn.input("Condition: "), vim.fn.input("Hit Number: ")) end},
         {'<F4>', function() require('dap').toggle_breakpoint() end, desc='设置断点'},
         {'<F5>', function() require('dap').continue() end, desc='启动继续'},
         {'<F8>', function() require('dap').terminate() end, desc='终止'},
@@ -135,7 +135,23 @@ M.dapview = {
     "igorlfs/nvim-dap-view",
     lazy = false,
     version = "1.*",
-    opts = {},
+    opts = {
+        winbar = {
+            default_section = "scopes",
+            show_keymap_hints = false,
+        },
+        windows = {
+            size = 0.35,
+            position = "right",
+            terminal = {
+                size = 0.2,
+                position = "above",
+                -- List of debug adapters for which the terminal should be ALWAYS hidden
+                hide = {},
+            },
+        },
+        auto_toggle = true,
+    },
     keys = {
         {'<F1>', function() require('dap-view').toggle() end, desc='打开关闭调试器'},
     }

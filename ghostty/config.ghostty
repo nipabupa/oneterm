@@ -5,10 +5,10 @@ background-opacity = 0.9
 background-blur = true
 
 font-family = "DejaVuSansM Nerd Font Mono"
-font-size = 19.5
+font-size = 19.0
 adjust-font-baseline = 0
 adjust-cell-width = 0
-adjust-cell-height = 10
+adjust-cell-height = 30%
 
 window-decoration = true
 window-padding-x = 0

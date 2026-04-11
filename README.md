@@ -12,7 +12,8 @@
 - 浏览器vim配置
 
 [安装](./install.md)
-[keymap全集](./keymap.md)
+
+[Keymap全集](./keymap.md)
 
 ### Niri + DankLinux
 

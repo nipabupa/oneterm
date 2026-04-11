@@ -40,6 +40,8 @@ require("lazy").setup({
         edit.highlight,
         edit.ai,
         edit.extra,
+        edit.align,
+        edit.splitjoin,
         workflow.files,
         workflow.pick,
         workflow.flash,

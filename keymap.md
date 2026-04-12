@@ -42,29 +42,31 @@
 
 ## Neovim
 
-基于`Ctrl`与`Space`，可通过`space`+`?`与`space`+`k`查看快捷键
+总体基于`Ctrl`与`Space`，可通过`space`+`?`与`space`+`k`查看快捷键
+
+### 基本
 
 neovim基本操作参考官方文档，这里仅展示自定义快捷键
 
-| 操作               | 快捷键          | 插件   | 模式 |
-| ---                | ---             | ---    | ---  |
-| 保存               | `ctrl` + `s`    | neovim |      |
-| 清除高亮           | `ctrl` + `z`    | neovim |      |
-| 下一个buffer       | `tab`           | neovim |      |
-| 上一个buffer       | `shift` + `tab` | neovim |      |
-| 下一个tab          | `]`             | neovim |      |
-| 上一个tab          | `[`             | neovim |      |
-| 关闭buffer（强制） | `]`             | neovim |      |
-| 光标左移           | `ctrl` + `h`    | neovim |      |
-| 光标下移           | `ctrl` + `j`    | neovim |      |
-| 光标上移           | `ctrl` + `k`    | neovim |      |
-| 光标右移           | `ctrl` + `l`    | neovim |      |
-
-
-### 基本移动
-
+| 操作               | 快捷键          | 插件   | 模式                  |
+| ---                | ---             | ---    | ---                   |
+| 保存               | `ctrl` + `s`    | neovim | `n`                   |
+| 清除高亮           | `ctrl` + `z`    | neovim | `n`                   |
+| 下一个buffer       | `tab`           | neovim | `n`                   |
+| 上一个buffer       | `shift` + `tab` | neovim | `n`                   |
+| 下一个tab          | `]`             | neovim | `n`                   |
+| 上一个tab          | `[`             | neovim | `n`                   |
+| 关闭buffer（强制） | `]`             | neovim | `n`                   |
+| 光标左移           | `ctrl` + `h`    | neovim | `n` + `i` + `x` + `c` |
+| 光标下移           | `ctrl` + `j`    | neovim | `n` + `i` + `x` + `c` |
+| 光标上移           | `ctrl` + `k`    | neovim | `n` + `i` + `x` + `c` |
+| 光标右移           | `ctrl` + `l`    | neovim | `n` + `i` + `x` + `c` |
+| Esc                | `ctrl` + `;`    | neovim | `n` + `i` + `x` + `c` |
+| Home               | `ctrl` + `a`    | neovim | `n` + `i` + `x` + `c` |
+| End                | `ctrl` + `e`    | neovim | `n` + `i` + `x` + `c` |
 
 ### 编辑
+
 
 ### 补全
 

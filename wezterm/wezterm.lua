@@ -1,6 +1,7 @@
 local wezterm = require 'wezterm'
 local config = {}
 
+-- os
 local is_windows = true
 if wezterm.target_triple == 'x86_64-unknown-linux-gnu' then
     is_windows = false
@@ -9,15 +10,18 @@ end
 -- shell
 if is_windows then
     config.default_prog = { 'pwsh.exe' }
+else
+    config.default_prog = { 'fish' }
 end
 
--- Base
-config.color_scheme = 'OneDark (base16)'
+-- theme
+config.color_scheme = 'Catppuccin Frappe'
+-- 字体与emoji
+config.font = wezterm.font_with_fallback { 'JetBrains Mono', 'Noto Color Emoji' }
 -- 根据屏幕分辨率设置，过大过小会导致下方留白
-config.font_size = 17.5
+config.font_size = 20
 -- 根据屏幕分辨率设置，过大过小会导致下方留白
-config.line_height = 1.00
-
+config.line_height = 1.19
 -- Window
 config.window_padding = {
     left = 0,
@@ -25,7 +29,10 @@ config.window_padding = {
     top = 0,
     bottom = 0,
 }
-config.window_background_opacity = 0.95
+-- 无边框
+config.window_decorations = "NONE"
+-- 透明度
+config.window_background_opacity = 0.9
 
 
 config.keys = {
@@ -72,6 +79,7 @@ config.keys = {
     }
 }
 
+-- common variables
 config.set_environment_variables = {
     CPP_EXTENSION_DEBUG_BIN = '',
 }

@@ -81,7 +81,8 @@ config.keys = {
 
 -- common variables
 config.set_environment_variables = {
-    CPP_EXTENSION_DEBUG_BIN = '',
+    -- Replace it to your path
+    ONETERM = '/home/liuzhe/workspace/oneterm'
 }
 if is_windows then
     config.set_environment_variables = {

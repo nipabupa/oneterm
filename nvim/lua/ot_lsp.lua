@@ -110,7 +110,6 @@ M.blink = {
                 ['<C-k>'] = { 'select_prev', 'fallback' },
                 ['<C-c>'] = { 'cancel', 'fallback' },
             },
-            completion = { menu = { auto_show = true } },
         },
         keymap = {
             preset = 'none',
@@ -120,6 +119,7 @@ M.blink = {
             ['<C-j>'] = { 'select_next', 'fallback_to_mappings' },
             ['<C-k>'] = { 'select_prev', 'fallback_to_mappings' },
             ['<C-c>'] = { 'cancel', 'fallback' },
+            ['<C-p>'] = { 'show_signature', 'hide_signature', 'fallback' },
         },
         appearance = {
             kind_icons = {

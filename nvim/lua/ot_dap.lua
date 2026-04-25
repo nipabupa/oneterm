@@ -15,13 +15,9 @@ local function config_for_c_cpp_rust()
         }
     }
     dap.adapters.codelldb = {
-        type = 'server',
-        port = "${port}",
-        executable = {
-            command = 'codelldb',
-            args = {"--port", "${port}"},
-            detached = not is_windows,
-        }
+        type = 'executable',
+        command = 'codelldb',
+        detached = not is_windows,
     }
     dap.configurations.cpp = {
         {
@@ -31,14 +27,7 @@ local function config_for_c_cpp_rust()
             -- 指定调试debug
             program = is_windows and vim.fn.getcwd() .. '\\build\\debug.exe' or vim.fn.getcwd() .. '/build/debug',
             cwd = '${workspaceFolder}',
-            stopAtEntry = false,
-            setupCommands = {
-                {
-                    text = '-enable-pretty-printing',
-                    description =  'enable pretty printing',
-                    ignoreFailures = false
-                },
-            },
+            stopOnEntry = false
         }, {
             name = "LaunchCustomLLDB",
             type = "codelldb",
@@ -52,14 +41,7 @@ local function config_for_c_cpp_rust()
                 end
             end,
             cwd = '${workspaceFolder}',
-            stopAtEntry = false,
-            setupCommands = {
-                {
-                    text = '-enable-pretty-printing',
-                    description =  'enable pretty printing',
-                    ignoreFailures = false
-                },
-            },
+            stopOnEntry = false
         }, {
             name = "LaunchDebugCPPTools",
             type = "cppdbg",

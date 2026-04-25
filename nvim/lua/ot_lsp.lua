@@ -68,6 +68,8 @@ M.lspconfig = {
         vim.lsp.enable('rust-analyzer')
         -- qml
         vim.lsp.enable('qmlls')
+        -- json
+        vim.lsp.enable('jsonls')
     end
 }
 

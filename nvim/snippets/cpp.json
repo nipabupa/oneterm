@@ -3,14 +3,36 @@
         "prefix": "main",
         "body": [
             "int main() {",
-            "    $1",
+            "    $0",
             "}"
         ]
     },
-    "print": {
-        "prefix": "print",
+    "vc": {
+        "prefix": "vc",
         "body": [
-            "printf(\"$1\", $2)"
+            "vector<$1> $0;"
+        ]
+    },
+    "vvc": {
+        "prefix": "vvc",
+        "body": [
+            "vector<vector<$1>> $0;"
+        ]
+    },
+    "bfs": {
+        "prefix": "bfs",
+        "body": [
+            "auto bfs = [&$1](this auto&& bfs, $2) -> $3 {",
+            "   $0",
+            "};"
+        ]
+    },
+    "dfs": {
+        "prefix": "dfs",
+        "body": [
+            "auto dfs = [&$1](this auto&& dfs, $2) -> $3 {",
+            "   $0",
+            "};"
         ]
     }
 }

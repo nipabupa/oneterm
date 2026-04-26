@@ -54,4 +54,64 @@ M.flash = {
     },
 }
 
+M.blink = {
+    'saghen/blink.cmp',
+    version = '1.*',
+    opts = {
+        cmdline = {
+            enabled = true,
+            keymap = {
+                preset = 'none',
+                ['<Tab>'] = { 'accept', 'select_next' },
+                ['<C-j>'] = { 'select_next', 'fallback' },
+                ['<C-k>'] = { 'select_prev', 'fallback' },
+                ['<C-c>'] = { 'cancel', 'fallback' },
+            },
+        },
+        keymap = {
+            preset = 'none',
+            ['<CR>'] = { 'select_and_accept', 'fallback' },
+            ['<Tab>'] = { 'snippet_forward', 'fallback' },
+            ['<S-Tab>'] = { 'snippet_backward', 'fallback' },
+            ['<C-j>'] = { 'select_next', 'fallback_to_mappings' },
+            ['<C-k>'] = { 'select_prev', 'fallback_to_mappings' },
+            ['<C-c>'] = { 'cancel', 'fallback' },
+            ['<C-p>'] = { 'show_signature', 'hide_signature', 'fallback' },
+        },
+        appearance = {
+            kind_icons = {
+                Text = '󰭷 ',
+                Method = ' ',
+                Function = '󰊕 ',
+                Constructor = '󰒓 ',
+                Field = '󰜢 ',
+                Variable = '󰆦 ',
+                Property = '󰖷 ',
+                Class = ' ',
+                Interface = ' ',
+                Struct = ' ',
+                Module = '󰅩 ',
+                Unit = ' ',
+                Value = ' ',
+                Enum = ' ',
+                EnumMember = ' ',
+                Keyword = '󰌆 ',
+                Constant = ' ',
+                Snippet = ' ',
+                Color = '󰏘 ',
+                File = '󰈔 ',
+                Reference = '󰬲 ',
+                Folder = '󰉋 ',
+                Event = '󱐋 ',
+                Operator = '󰪚 ',
+                TypeParameter = '󰬛 ',
+            },
+        },
+        signature = {
+            enabled = true,
+        }
+    },
+    opts_extend = { "sources.default" }
+}
+
 return M

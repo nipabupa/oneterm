@@ -1,27 +1,47 @@
 local wezterm = require 'wezterm'
 local config = {}
+local home = os.getenv 'HOME'
+local is_windows = false
+local is_linux = false
+local is_macos = false
 
--- os
-local is_windows = true
-if wezterm.target_triple == 'x86_64-unknown-linux-gnu' then
-    is_windows = false
-end
-
--- shell
-if is_windows then
-    config.default_prog = { 'pwsh.exe' }
+if wezterm.target_triple == 'x86_64-pc-windows-msvc' then
+    is_windows = true
+elseif wezterm.target_triple == 'x86_64-unknown-linux-gnu' then
+    is_linux = true
 else
-    config.default_prog = { 'fish' }
+    is_macos = true
 end
+
+local function generate_path()
+    local new_path = ''
+    if is_macos then
+        -- macports does not have codelldb, install it manually
+        local codelldb = home .. '/.local/share/codelldb/extension/adapter/:'
+        local macports = '/opt/local/bin/:/opt/local/sbin/:'
+        new_path = new_path .. codelldb .. macports
+    end
+    local uv = home .. '/.local/bin/:'
+    return new_path .. uv .. os.getenv 'PATH'
+end
+
+-- common variables
+config.set_environment_variables = {
+    ONETERM = home .. '/oneterm',
+    PATH = generate_path(),
+}
+
+-- nushell
+config.default_prog = { 'nu' }
 
 -- theme
 config.color_scheme = 'Catppuccin Frappe'
 -- 字体与emoji
 config.font = wezterm.font_with_fallback { 'JetBrains Mono', 'Noto Color Emoji' }
 -- 根据屏幕分辨率设置，过大过小会导致下方留白
-config.font_size = 20
+config.font_size = 25
 -- 根据屏幕分辨率设置，过大过小会导致下方留白
-config.line_height = 1.19
+config.line_height = 1.2
 -- Window
 config.window_padding = {
     left = 0,
@@ -29,11 +49,10 @@ config.window_padding = {
     top = 0,
     bottom = 0,
 }
--- 无边框
+-- 无边框TITLE | RESIZE
 config.window_decorations = "NONE"
 -- 透明度
 config.window_background_opacity = 0.9
-
 
 config.keys = {
     {
@@ -78,16 +97,5 @@ config.keys = {
         action = wezterm.action.ActivatePaneDirection 'Right',
     }
 }
-
--- common variables
-config.set_environment_variables = {
-    -- Replace it to your path
-    ONETERM = '/home/liuzhe/workspace/oneterm'
-}
-if is_windows then
-    config.set_environment_variables = {
-        YAZI_FILE_ONE = 'D:\\env\\Git\\usr\\bin\\file.exe'
-    }
-end
 
 return config

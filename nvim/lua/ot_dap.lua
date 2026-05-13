@@ -97,7 +97,11 @@ M.dap = {
         vim.fn.sign_define('DapLogPoint', {text='', texthl='', linehl='ErrorMsg', numhl=''})
         vim.fn.sign_define('DapStopped', {text='', texthl='Substitute', linehl='', numhl=''})
         -- Python
-        require('dap-python').setup('python')
+        if is_windows then
+            require('dap-python').setup('pythonw')
+        else
+            require('dap-python').setup('python')
+        end
         config_for_c_cpp_rust()
     end,
     keys = {

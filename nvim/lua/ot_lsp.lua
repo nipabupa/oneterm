@@ -5,8 +5,8 @@ M.treesitter = {
     build = ":TSUpdate",
     config = function ()
         vim.api.nvim_create_autocmd('FileType', {
-          pattern = { 'lua', 'python' },
-          callback = function() vim.treesitter.start() end,
+            pattern = { 'c', 'cpp', 'lua', 'python', 'json', 'nu' },
+            callback = function() vim.treesitter.start() end,
         })
     end
 }

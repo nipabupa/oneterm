@@ -34,5 +34,20 @@
             "   $0",
             "};"
         ]
+    },
+    "lower_bound": {
+        "prefix": "lower_bound",
+        "body": [
+            "int left = 0, right = n;",
+            "while(left + 1 < right) {",
+            "    int mid = left + (right - left) / 2;",
+            "    if(power[mid] >= target) {",
+            "       right = mid;",
+            "    } else {",
+            "        left = mid;",
+            "    }",
+            "}",
+            "return nums[right];"
+        ]
     }
 }

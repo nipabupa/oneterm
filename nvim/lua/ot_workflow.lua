@@ -4,7 +4,24 @@ M.files = {
     'nvim-mini/mini.files',
     version = '*',
     event = "VeryLazy",
-    opts = {}, keys = {
+    opts = {
+        mappings = {
+            close       = 'q',
+            go_in       = 'o',
+            go_in_plus  = 'O',
+            go_out      = 'u',
+            go_out_plus = 'U',
+            mark_goto   = "'",
+            mark_set    = 'm',
+            reset       = '<BS>',
+            reveal_cwd  = '@',
+            show_help   = 'g?',
+            synchronize = '=',
+            trim_left   = '<',
+            trim_right  = '>',
+        },
+    },
+    keys = {
         { "<leader>e", mode = { "n", "x", "o" }, function() MiniFiles.open() end, desc = "文件树" },
     }
 }

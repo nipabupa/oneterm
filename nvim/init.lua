@@ -6,9 +6,9 @@ vim.opt.sw            = 4                   -- 设置缩进宽度
 vim.opt.ts            = 4                   -- 设置 TAB 宽度
 vim.opt.et            = true                -- 展开tab
 vim.opt.softtabstop   = 4                   -- 如果后面设置了 expandtab 那么展开 tab 为多少字符
-vim.opt.laststatus    = 2                   -- 总是显示状态栏
+vim.opt.laststatus    = 0                   -- 总是显示状态栏
 vim.opt.signcolumn    = 'yes:1'             -- 总是显示侧边栏（用于显示 mark/gitdiff/诊断信息）
-vim.opt.showtabline   = 2                   -- 总是显示标签栏
+vim.opt.showtabline   = 0                   -- 总是显示标签栏
 vim.opt.list          = true                -- 设置显示制表符等隐藏字符
 vim.opt.listchars:append("eol:↴")           -- 显示换行
 vim.opt.showcmd       = true                -- 右下角显示命令

@@ -64,12 +64,14 @@ M.lspconfig = {
         vim.lsp.enable('ty')
         -- cpp
         vim.lsp.enable('clangd')
-        -- rust
-        vim.lsp.enable('rust-analyzer')
-        -- qml
-        vim.lsp.enable('qmlls')
         -- json
         vim.lsp.enable('jsonls')
+        -- nushell
+        vim.lsp.enable('nushell')
+        -- rust
+        -- vim.lsp.enable('rust-analyzer')
+        -- qml
+        -- vim.lsp.enable('qmlls')
     end
 }
 

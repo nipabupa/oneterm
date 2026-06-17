@@ -4,23 +4,7 @@ M.files = {
     'nvim-mini/mini.files',
     version = '*',
     event = "VeryLazy",
-    opts = {
-        mappings = {
-            close       = 'q',
-            go_in       = 'o',
-            go_in_plus  = 'O',
-            go_out      = 'u',
-            go_out_plus = 'U',
-            mark_goto   = "'",
-            mark_set    = 'm',
-            reset       = '<BS>',
-            reveal_cwd  = '@',
-            show_help   = 'g?',
-            synchronize = '=',
-            trim_left   = '<',
-            trim_right  = '>',
-        },
-    },
+    opts = {},
     keys = {
         { "<leader>e", mode = { "n", "x", "o" }, function() MiniFiles.open() end, desc = "文件树" },
     }
@@ -40,7 +24,7 @@ M.pick = {
     keys = {
         { "<leader>l", mode = { "n", "x", "o" }, function() MiniPick.builtin.resume() end, desc = "上一次查询" },
         { "<leader>f", mode = { "n", "x", "o" }, function() MiniPick.builtin.files() end, desc = "文件查找" },
-        { "<leader>B", mode = { "n", "x", "o" }, function() MiniPick.builtin.buffers() end, desc = "Buffer查找" },
+        { "<leader>b", mode = { "n", "x", "o" }, function() MiniPick.builtin.buffers() end, desc = "Buffer查找" },
         { "<leader>g", mode = { "n", "x", "o" }, function()
             vim.ui.input({prompt = "Grep", default = vim.fn.expand("<cword>")}, function (word)
                 if word ~= nil then
@@ -74,6 +58,7 @@ M.flash = {
 M.blink = {
     'saghen/blink.cmp',
     version = '1.*',
+    event = "VeryLazy",
     opts = {
         cmdline = {
             enabled = true,

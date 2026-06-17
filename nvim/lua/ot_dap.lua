@@ -89,7 +89,7 @@ M.dap = {
     'mfussenegger/nvim-dap',
     event = "VeryLazy",
     dependencies = {
-        'mfussenegger/nvim-dap-python',
+        { 'mfussenegger/nvim-dap-python', event = "VeryLazy" }
     },
     config = function()
         vim.fn.sign_define('DapBreakpoint', {text='', texthl='ErrorMsg', linehl='', numhl=''})
@@ -119,7 +119,7 @@ M.dap = {
 
 M.dapview = {
     "igorlfs/nvim-dap-view",
-    lazy = false,
+    event = "VeryLazy",
     version = "1.*",
     opts = {
         winbar = {

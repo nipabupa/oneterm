@@ -59,7 +59,7 @@ def install_neovim [] {
 def install_zoxide [] {
     # init
     let filepath = ($nu.user-autoload-dirs | path join "zoxide.nu")
-    zoxide init nu | save -f $filepath
+    zoxide init nushell | save -f $filepath
 }
 
 def install_nushell [] {

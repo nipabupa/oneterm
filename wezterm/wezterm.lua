@@ -36,6 +36,8 @@ config.default_prog = { 'nu' }
 
 -- theme
 config.color_scheme = 'Catppuccin Frappe'
+-- 线框
+config.underline_thickness = '3px'
 -- 字体与emoji
 config.font = wezterm.font_with_fallback { 'JetBrains Mono', 'Noto Color Emoji' }
 -- 根据屏幕分辨率设置，过大过小会导致下方留白

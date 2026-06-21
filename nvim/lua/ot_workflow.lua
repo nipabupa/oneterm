@@ -6,7 +6,14 @@ M.files = {
     event = "VeryLazy",
     opts = {},
     keys = {
-        { "<leader>e", mode = { "n", "x", "o" }, function() MiniFiles.open() end, desc = "文件树" },
+        { "<leader>e", mode = { "n", "x", "o" }, function()
+            local tmp = vim.api.nvim_buf_get_name(0)
+            if tmp == nil or tmp == "" then
+                MiniFiles.open()
+            else
+                MiniFiles.open(tmp)
+            end
+        end, desc = "文件树" },
     }
 }
 

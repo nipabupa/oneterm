@@ -17,8 +17,14 @@
 # options using:
 #     config nu --doc | nu-highlight | less -R
 
+# nvim
 $env.config.buffer_editor = "nvim"
-if $nu.os-info == 'windows' {
+# oneterm
+$env.ONETERM = $env.HOME | append "/oneterm" | str join 
+# env.PATH
+$env.PATH = $env.PATH | append ($env.HOME | path join ".local" "bin" | str join)
+
+if ($nu.os-info | get name) == 'windows' {
     $env.config.shell_integration.osc133 = false;
 }
 

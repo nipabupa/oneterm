@@ -5,6 +5,7 @@ local M = {}
 M.gitsigns = {
     'lewis6991/gitsigns.nvim',
     opts = {},
+    event = "VeryLazy",
     config = function()
         local gitsigns = require('gitsigns')
         local opts = {silent=true, remap=false}

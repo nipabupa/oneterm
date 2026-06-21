@@ -1,39 +1,8 @@
 local wezterm = require 'wezterm'
 local config = {}
-local home = os.getenv 'HOME'
-local is_windows = false
-local is_linux = false
-local is_macos = false
-
-if wezterm.target_triple == 'x86_64-pc-windows-msvc' then
-    is_windows = true
-elseif wezterm.target_triple == 'x86_64-unknown-linux-gnu' then
-    is_linux = true
-else
-    is_macos = true
-end
-
-local function generate_path()
-    local new_path = ''
-    if is_macos then
-        -- macports does not have codelldb, install it manually
-        local codelldb = home .. '/.local/share/codelldb/extension/adapter/:'
-        local macports = '/opt/local/bin/:/opt/local/sbin/:'
-        new_path = new_path .. codelldb .. macports
-    end
-    local uv = home .. '/.local/bin/:'
-    return new_path .. uv .. os.getenv 'PATH'
-end
-
--- common variables
-config.set_environment_variables = {
-    ONETERM = home .. '/oneterm',
-    PATH = generate_path(),
-}
 
 -- nushell
 config.default_prog = { 'nu' }
-
 -- theme
 config.color_scheme = 'Catppuccin Frappe'
 -- 线框

@@ -20,6 +20,7 @@ M.surround = {
 M.indent = {
     'nvim-mini/mini.indentscope',
     version = '*',
+    event = "VeryLazy",
     opts = {},
 }
 

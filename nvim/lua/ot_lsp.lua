@@ -62,16 +62,16 @@ M.lspconfig = {
         vim.lsp.enable('lua_ls')
         -- python
         vim.lsp.enable('ty')
-        -- cpp
+        -- c & cpp
         vim.lsp.enable('clangd')
         -- json
         vim.lsp.enable('jsonls')
         -- nushell
         vim.lsp.enable('nushell')
         -- rust
-        -- vim.lsp.enable('rust-analyzer')
+        vim.lsp.enable('rust-analyzer')
         -- qml
-        -- vim.lsp.enable('qmlls')
+        vim.lsp.enable('qmlls')
     end
 }
 

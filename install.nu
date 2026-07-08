@@ -44,7 +44,7 @@ def install_yazi [] {
 def install_neovim [] {
     mut dir = ""
     if $os == "windows" {
-        $dir = ($env.APPDATA | path join "Local" "nvim")
+        $dir = ($env.HOME | path join "AppData" "Local" "nvim")
     } else {
         $dir = ($env.HOME | path join ".config" "nvim")
     }

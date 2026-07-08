@@ -5,7 +5,7 @@ M.treesitter = {
     build = ":TSUpdate",
     config = function ()
         vim.api.nvim_create_autocmd('FileType', {
-            pattern = { 'c', 'cpp', 'lua', 'python', 'json', 'nu' },
+            pattern = { 'c', 'cpp', 'lua', 'python', 'json', 'nu', 'gdscript', 'rust' },
             callback = function() vim.treesitter.start() end,
         })
     end
@@ -72,6 +72,8 @@ M.lspconfig = {
         vim.lsp.enable('rust-analyzer')
         -- qml
         vim.lsp.enable('qmlls')
+        -- qml
+        vim.lsp.enable('gdscript')
     end
 }
 

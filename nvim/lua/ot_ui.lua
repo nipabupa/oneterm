@@ -30,34 +30,11 @@ ui.startup = {
 };
 
 -- bufferline
-ui.bufferline = {
-    "akinsho/bufferline.nvim",
-    version = "*",
-    config = function()
-        require('bufferline').setup({
-            options = {
-                truncate_names = false,
-                show_buffer_close_icons = false,
-                diagnostics = false,
-                color_icons = true,
-                separator_style = 'slant',
-                offsets = { },
-            },
-        })
-        vim.keymap.set('n', "<leader>bp", "<cmd>BufferLineTogglePin<cr>", {remap=false, desc='固定Buffer'})
-        vim.keymap.set('n', "<leader>b1", "<cmd>BufferLineGoToBuffer 1<cr>", {remap=false, desc='跳转Buffer 1'})
-        vim.keymap.set('n', "<leader>b2", "<cmd>BufferLineGoToBuffer 2<cr>", {remap=false, desc='跳转Buffer 2'})
-        vim.keymap.set('n', "<leader>b3", "<cmd>BufferLineGoToBuffer 3<cr>", {remap=false, desc='跳转Buffer 3'})
-        vim.keymap.set('n', "<leader>b4", "<cmd>BufferLineGoToBuffer 4<cr>", {remap=false, desc='跳转Buffer 4'})
-        vim.keymap.set('n', "<leader>b5", "<cmd>BufferLineGoToBuffer 5<cr>", {remap=false, desc='跳转Buffer 5'})
-        vim.keymap.set('n', "<leader>b6", "<cmd>BufferLineGoToBuffer 6<cr>", {remap=false, desc='跳转Buffer 6'})
-        vim.keymap.set('n', "<leader>b6", "<cmd>BufferLineGoToBuffer 6<cr>", {remap=false, desc='跳转Buffer 6'})
-        vim.keymap.set('n', "<leader>bc", "<cmd>BufferLineCloseOthers<cr>", {remap=false, desc='关闭其他buffer'})
-        vim.keymap.set('n', "<leader>bl", "<cmd>BufferLineCloseRight<cr>", {remap=false, desc='关闭右边buffer'})
-        vim.keymap.set('n', "<leader>bh", "<cmd>BufferLineCloseLeft<cr>", {remap=false, desc='关闭左边buffer'})
-    end
+ui.tabline = {
+    'nvim-mini/mini.tabline',
+    version = '*',
+    opts = {}
 }
-
 
 -- lualine
 ui.lualine = {
@@ -151,7 +128,7 @@ ui.whichkey = {
         triggers = {}
     },
     keys = {
-        { "<leader>?", function() require("which-key").show({ global = false }) end, desc = "Whick Key?", },
+        { "<leader>?", function() require("which-key").show({ global = true }) end, desc = "Whick Key?", },
     },
 }
 

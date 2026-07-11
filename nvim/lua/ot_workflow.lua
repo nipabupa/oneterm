@@ -77,6 +77,9 @@ M.blink = {
                 ['<C-c>'] = { 'cancel', 'fallback' },
             },
         },
+        signature = {
+            enabled = false,
+        },
         keymap = {
             preset = 'none',
             ['<CR>'] = { 'select_and_accept', 'fallback' },
@@ -116,9 +119,6 @@ M.blink = {
                 TypeParameter = '󰬛 ',
             },
         },
-        signature = {
-            enabled = true,
-        }
     },
     opts_extend = { "sources.default" }
 }

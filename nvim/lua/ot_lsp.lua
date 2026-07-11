@@ -1,16 +1,10 @@
 local M = {}
 
 M.treesitter = {
-    "nvim-treesitter/nvim-treesitter",
-    build = ":TSUpdate",
-    config = function ()
-        vim.api.nvim_create_autocmd('FileType', {
-            pattern = { 'c', 'cpp', 'lua', 'python', 'json', 'nu', 'gdscript', 'rust' },
-            callback = function() vim.treesitter.start() end,
-        })
-    end
+    "romus204/tree-sitter-manager.nvim",
+    dependencies = {},
+    opts = {},
 }
-
 
 M.lspconfig = {
     'neovim/nvim-lspconfig',
@@ -83,18 +77,18 @@ M.diagnostic = {
     priority = 1000,
     config = function()
         require('tiny-inline-diagnostic').setup({
-            preset = "simple",
+            preset = "amongus",
+            transparent_bg = true,
+            add_messages = {
+                display_count = true,
+            },
+            multilines = {
+                enabled = true,
+            },
         })
         vim.diagnostic.config({
             virtual_text = false,
-            signs = {
-                text = { 
-                    [vim.diagnostic.severity.ERROR] = ' ',
-                    [vim.diagnostic.severity.WARN] = ' ',
-                    [vim.diagnostic.severity.INFO] = ' ',
-                    [vim.diagnostic.severity.HINT] = '',
-                }
-            },
+            signs = false,
             underline = true,
             update_in_insert = false,
             severity_sort = true

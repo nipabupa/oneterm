@@ -10,7 +10,7 @@ ui.colorscheme = {
     "catppuccin/nvim",
     config = function()
         require("catppuccin").setup({
-            flavour = "macchiato",  -- latte, frappe, macchiato, mocha
+            flavour = "frappe",  -- latte, frappe, macchiato, mocha
             transparent_background = true
         })
         vim.cmd.colorscheme "catppuccin-nvim"
@@ -54,7 +54,7 @@ ui.lualine = {
         },
         sections = {
             lualine_a = { { 'mode', separator = { left = '', right = '' } } },
-            lualine_b = { { 'branch', icon = '' } },
+            lualine_b = { { 'branch', icon = '', separator = { left = '', right = '' } } },
             lualine_c = { { 'filename',
                 symbols = {
                     modified = '',
@@ -64,9 +64,9 @@ ui.lualine = {
                 }
             }, 'lsp_status', 'diagnostics' },
             lualine_x = {'encoding', 'fileformat'},
-            lualine_y = {'filetype', 'progress'},
+            lualine_y = {'filetype', 'location'},
             lualine_z = {
-              { 'location', separator = { left = '', right = '' }, left_padding = 2 },
+              { 'progress', separator = { left = '', right = '' }, left_padding = 2 },
             },
         },
         inactive_sections = {
@@ -99,8 +99,8 @@ ui.notice = {
             view_search = "virtualtext", -- view for search count messages. Set to `false` to disable
         },
         lsp = {
-            hover = { enabled = false },
-            signature = { enabled = false },
+            hover = { enabled = true },
+            signature = { enabled = true },
             -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
             override = {
                 -- override the default lsp markdown formatter with Noice

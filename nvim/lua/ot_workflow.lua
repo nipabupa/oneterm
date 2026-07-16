@@ -33,7 +33,7 @@ M.pick = {
         { "<leader>f", mode = { "n", "x", "o" }, function() MiniPick.builtin.files() end, desc = "文件查找" },
         { "<leader>b", mode = { "n", "x", "o" }, function() MiniPick.builtin.buffers() end, desc = "Buffer查找" },
         { "<leader>g", mode = { "n", "x", "o" }, function()
-            vim.ui.input({prompt = "Grep", default = vim.fn.expand("<cword>")}, function (word)
+            vim.ui.input({prompt = "󰈞 ", default = vim.fn.expand("<cword>")}, function (word)
                 if word ~= nil then
                     MiniPick.builtin.grep({pattern = word})
                 end
@@ -67,8 +67,13 @@ M.blink = {
     version = '1.*',
     event = "VeryLazy",
     opts = {
+        completion = {
+            menu = { border = "rounded" },
+            documentation = { window = { border = "rounded"} },
+        },
         cmdline = {
             enabled = true,
+            completion = { menu = { auto_show = true } },
             keymap = {
                 preset = 'none',
                 ['<Tab>'] = { 'accept', 'select_next' },
@@ -78,7 +83,8 @@ M.blink = {
             },
         },
         signature = {
-            enabled = false,
+            enabled = true,
+            window = { border = "rounded" },
         },
         keymap = {
             preset = 'none',

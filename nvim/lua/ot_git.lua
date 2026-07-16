@@ -8,7 +8,6 @@ M.gitsigns = {
     event = "VeryLazy",
     config = function()
         local gitsigns = require('gitsigns')
-        local opts = {silent=true, remap=false}
         vim.keymap.set('n', '<leader>vp', function() gitsigns.preview_hunk_inline() end, {silent=true, remap=false, desc="Git改动预览"})
         vim.keymap.set('n', '<leader>vb', function() gitsigns.blame_line() end, {silent=true, remap=false, desc="Git blame"})
         vim.keymap.set('n', '<leader>vd', function() gitsigns.diffthis() end, {silent=true, remap=false, desc="Git diff"})

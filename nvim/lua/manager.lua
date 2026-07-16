@@ -31,7 +31,7 @@ require("lazy").setup({
         ui.startup,
         ui.tabline,
         ui.lualine,
-        ui.notice,
+        -- ui.notice,
         ui.whichkey,
         edit.pairs,
         edit.surround,

@@ -1,84 +1,264 @@
---------------------------------------------------------------
+---------------------------------
 -- 全局配置
---------------------------------------------------------------
-vim.opt.number        = true                -- 设置行号
+---------------------------------
 vim.opt.sw            = 4                   -- 设置缩进宽度
 vim.opt.ts            = 4                   -- 设置 TAB 宽度
 vim.opt.et            = true                -- 展开tab
 vim.opt.softtabstop   = 4                   -- 如果后面设置了 expandtab 那么展开 tab 为多少字符
-vim.opt.laststatus    = 0                   -- 总是显示状态栏
-vim.opt.signcolumn    = 'yes:1'             -- 总是显示侧边栏（用于显示 mark/gitdiff/诊断信息）
-vim.opt.showtabline   = 0                   -- 总是显示标签栏
-vim.opt.list          = true                -- 设置显示制表符等隐藏字符
-vim.opt.listchars:append("eol:↴")           -- 显示换行
-vim.opt.showcmd       = true                -- 右下角显示命令
-vim.opt.splitright    = true                -- 水平切割窗口时，默认在右边显示新窗口
-vim.opt.cursorline    = true                -- 高亮当前行
-vim.opt.background    = 'dark'              -- 设置黑色背景
-vim.opt.termguicolors = true                -- 允许 256 色
-vim.opt.bs            = 'eol,start,indent'  -- 设置 Backspace 键模式
-vim.opt.autoindent    = true                -- 自动缩进
-vim.opt.winaltkeys    = 'no'                -- Windows 禁用 ALT 操作菜单（使得 ALT 可以用到 Vim里）
-vim.opt.wrap          = false               -- 关闭自动换行
-vim.opt.ttimeout      = true                -- 打开功能键超时检测（终端下功能键为一串 ESC 开头的字符串）
-vim.opt.ttimeoutlen   = 50                  -- 功能键超时检测 50 毫秒
-vim.opt.ruler         = true                -- 显示光标位置
-vim.opt.ignorecase    = true                -- 搜索时忽略大小写
-vim.opt.smartcase     = true                -- 智能搜索大小写判断，默认忽略大小写，除非搜索内容包含大写>字母
-vim.opt.incsearch     = true                -- 查找输入时动态增量显示查找结果
-vim.opt.encoding      = 'utf-8'             -- 内部工作编码
-vim.opt.fileencodings = 'utf-8,gbk,gbk2312' -- 文件默认编码
-vim.opt.showmatch     = true                -- 显示匹配的括号
-vim.opt.matchtime     = 5                   -- 显示括号匹配的时间
-vim.opt.display       = 'lastline'          -- 显示最后一行
-vim.opt.wildmenu      = true                -- 允许下方显示目录
-vim.opt.lazyredraw    = false               -- 延迟绘制（提升性能）
-vim.opt.formatoptions = 'tcqmM'
-vim.opt.ffs           = 'unix,dos,mac'      -- 文件换行符，默认使用 unix 换行符
-vim.opt.backup        = false               -- 不允许备份
-vim.opt.writebackup   = false               -- 不允许保存时备份
-vim.opt.swapfile      = false               -- 禁用交换文件
-vim.opt.undofile      = false               -- 禁用undo文件
-vim.opt.clipboard     = 'unnamedplus'       -- 使用系统剪切板
-vim.opt.hidden        = true                -- buf隐藏（终端）
-vim.opt.completeopt   = 'menuone,noselect'  -- compe
-
----- 设置CC为GCC
 vim.env.CC = "gcc"
 
---------------------------------------------------------------
--- 全局键盘映射
---------------------------------------------------------------
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
+local is_windows = package.config:sub(1, 1) == "\\"
+----------------------------------
+-- 全局自定义快捷键
+----------------------------------
 local opts = {silent=true, remap=false}
-vim.keymap.set({'n', 'x'}, ' ', '', opts)
--- 保存
-vim.keymap.set('n', '<C-s>', ':w<cr>', opts)
 -- 清除高亮
 vim.keymap.set('n', '<C-z>', ':noh<cr>', opts)
 -- 切换上一个buffer
 vim.keymap.set('n', '<S-Tab>', ':bp<cr>', opts)
 -- 切换下一个buffer
 vim.keymap.set('n', '<Tab>', ':bn<cr>', opts)
--- 切换上一个tab
-vim.keymap.set('n', '[', ':tabp<cr>', opts)
--- 切换下一个tab
-vim.keymap.set('n', ']', ':tabn<cr>', opts)
+-- 关闭buffer
 vim.keymap.set('n', '<c-q>', function() vim.cmd.bdelete({bang=true}) end, opts)
--- 方向
-vim.keymap.set({'n', 'i', 'x', 'c'}, '<c-h>', '<left>', opts)
-vim.keymap.set({'n', 'i', 'x', 'c'}, '<c-j>', '<down>', opts)
-vim.keymap.set({'n', 'i', 'x', 'c'}, '<c-k>', '<up>', opts)
-vim.keymap.set({'n', 'i', 'x', 'c'}, '<c-l>', '<right>', opts)
--- ESC
-vim.keymap.set({'n', 'i', 'x', 'c'}, '<c-;>', '<esc>', opts)
 -- Home
 vim.keymap.set({'n', 'i', 'x', 'c'}, '<c-a>', '<Home>', opts)
 -- End
 vim.keymap.set({'n', 'i', 'x', 'c'}, '<c-e>', '<End>', opts)
+----------------------------------
+-- Mini库
+----------------------------------
+vim.pack.add({
+    { src = 'https://gitee.com/nipabupa/mini.nvim', version = 'stable' },
+})
+--------------------------------
+-- 配色方案
+--------------------------------
+vim.pack.add({
+    { src = "https://gitee.com/nipabupa/catppuccin", name = "catppuccin" }
+})
+require("catppuccin").setup({
+    flavour = "mocha", -- latte, frappe, macchiato, mocha
+})
+vim.cmd.colorscheme "catppuccin-nvim"
+--------------------------------
+-- 基础配置
+--------------------------------
+require('mini.basics').setup({
+    options = {
+        basic = true,                   -- Basic options ('number', 'ignorecase', and many more)
+    	extra_ui = false,               -- Extra UI features ('winblend', 'listchars', 'pumheight', ...)
+    	win_borders = 'auto',           -- Presets for window borders ('single', 'double', ...)
+    },
+    mappings = {
+    	basic = true,                   -- Basic mappings (better 'jk', save with Ctrl+S, ...)
+    	option_toggle_prefix = [[\]],
+    	windows = true,                 -- Window navigation with <C-hjkl>, resize with <C-arrow>
+    	move_with_alt = true,           -- Move cursor in Insert, Command, and Terminal mode with <M-hjkl>
+    },
+    autocommands = {
+        basic = true,                   -- Basic autocommands (highlight on yank, start Insert in terminal, ...)
+        relnum_in_visual_mode = false,  -- Set 'relativenumber' only in linewise and blockwise Visual mode
+    },
+    silent = false,                     -- Whether to disable showing non-error feedback
+})
+require('mini.extra').setup()
+----------------------------------
+-- UI
+----------------------------------
+require('mini.icons').setup()
+require('mini.tabline').setup()
+require('mini.statusline').setup()
+require('mini.bufremove').setup()
+-- require('mini.statuscolumn').setup()
+require('mini.git').setup()
+require('mini.indentscope').setup()
+require('mini.notify').setup()
+require('mini.cmdline').setup()
+----------------------------------
+-- Snippet
+----------------------------------
+local gen_loader = require('mini.snippets').gen_loader
+require('mini.snippets').setup({
+    snippets = {
+        gen_loader.from_file(is_windows and '~/AppData/Local/nvim/snippets/global.json' or '~/.config/nvim/snippets/global.json'),
+        gen_loader.from_lang(),
+    }
+})
+----------------------------------
+-- 编辑
+----------------------------------
+require('mini.ai').setup()
+require('mini.align').setup()
+require('mini.completion').setup()
+require('mini.pairs').setup()
+require('mini.surround').setup()
+require('mini.trailspace').setup()
+require('mini.bracketed').setup()
+require('mini.jump').setup()
+require('mini.jump2d').setup()
+----------------------------------
+-- 文件管理
+----------------------------------
+require('mini.files').setup()
+vim.keymap.set( {'n', 'x', 'o' }, '<leader>e', function()
+    local tmp = vim.api.nvim_buf_get_name(0)
+    if tmp == nil or tmp == "" then
+        MiniFiles.open()
+    else
+        MiniFiles.open(tmp)
+    end
+end, { desc="打开文件管理器", silent=true, remap=false })
+----------------------------------
+-- 快捷键提示
+----------------------------------
+local miniclue = require('mini.clue')
+miniclue.setup({
+    triggers = {
+        -- Leader triggers
+        { mode = { 'n', 'x' }, keys = '<Leader>' },
+        -- `[` and `]` keys
+        { mode = 'n', keys = '[' },
+        { mode = 'n', keys = ']' },
+        -- Built-in completion
+        { mode = 'i', keys = '<C-x>' },
+        -- `g` key
+        { mode = { 'n', 'x' }, keys = 'g' },
+        -- Marks
+        { mode = { 'n', 'x' }, keys = "'" },
+        { mode = { 'n', 'x' }, keys = '`' },
+        -- Registers
+        { mode = { 'n', 'x' }, keys = '"' },
+        { mode = { 'i', 'c' }, keys = '<C-r>' },
+        -- Window commands
+        { mode = 'n', keys = '<C-w>' },
+        -- `z` key
+        { mode = { 'n', 'x' }, keys = 'z' },
+    },
+    clues = {
+        -- Enhance this by adding descriptions for <Leader> mapping groups
+        miniclue.gen_clues.square_brackets(),
+        miniclue.gen_clues.builtin_completion(),
+        miniclue.gen_clues.g(),
+        miniclue.gen_clues.marks(),
+        miniclue.gen_clues.registers(),
+        miniclue.gen_clues.windows(),
+        miniclue.gen_clues.z(),
+    },
+})
+--------------------------------
+-- 搜索
+--------------------------------
+require('mini.pick').setup()
+vim.keymap.set({ "n", "x", "o" }, '<leader>l', function() MiniPick.builtin.resume() end, { desc="上一次查询结果", silent=true, remap=false })
+vim.keymap.set({ "n", "x", "o" }, '<leader>f', function() MiniPick.builtin.files() end, { desc="文件查找", silent=true, remap=false })
+vim.keymap.set({ "n", "x", "o" }, '<leader>b', function() MiniPick.builtin.buffers() end, { desc="Buffer查找", silent=true, remap=false })
+vim.keymap.set({ "n", "x", "o" }, '<leader>g', function()
+    vim.ui.input({prompt = "󰈞 ", default = vim.fn.expand("<cword>")}, function (word)
+        if word ~= nil then
+            MiniPick.builtin.grep({pattern = word})
+        end
+    end);
+end, { desc="字符串查找", silent=true, remap=false })
+vim.keymap.set({ "n", "x", "o" }, '<leader>G', function() MiniPick.builtin.grep_live() end, { desc="字符串实时查找", silent=true, remap=false })
+vim.keymap.set({ "n", "x", "o" }, '<leader>sd', function() MiniExtra.pickers.lsp({scope = 'document_symbol'}) end, { desc="LSP文件符号查找", silent=true, remap=false })
+vim.keymap.set({ "n", "x", "o" }, '<leader>sw', function() MiniExtra.pickers.lsp({scope = 'workspace_symbol'}) end, { desc="LSP全局符号查找", silent=true, remap=false })
+vim.keymap.set({ "n", "x", "o" }, '<leader>d', function() MiniExtra.pickers.diagnostic() end, { desc="LSP问题查找", silent=true, remap=false })
+vim.keymap.set({ "n", "x", "o" }, '<leader>c', function() MiniExtra.pickers.commands() end, { desc="命令查找", silent=true, remap=false })
+vim.keymap.set({ "n", "x", "o" }, '<leader>k', function() MiniExtra.pickers.keymaps() end, { desc="快捷键查找", silent=true, remap=false })
+vim.keymap.set({ "n", "x", "o" }, '<leader>h', function() MiniExtra.pickers.history() end, { desc="历史命令查找", silent=true, remap=false })
+vim.keymap.set({ "n", "x", "o" }, '<leader>p', function() MiniExtra.pickers.hipatterns() end, { desc="特殊高亮查找", silent=true, remap=false })
+vim.keymap.set({ "n", "x", "o" }, '<leader>r', function() MiniExtra.pickers.registers() end, { desc="寄存器查找", silent=true, remap=false })
+--------------------------------
+-- treesitter配置
+--------------------------------
+vim.pack.add{
+    { src = 'https://gitee.com/nipabupa/nvim-treesitter' },
+}
+--------------------------------
+-- LSP配置
+--------------------------------
+vim.pack.add{
+    { src = 'https://gitee.com/nipabupa/nvim-lspconfig' },
+}
 
---------------------------------------------------------------
--- 插件
---------------------------------------------------------------
-require('manager')
+vim.lsp.config('lua_ls', {
+    on_init = function(client)
+        if client.workspace_folders then
+            local path = client.workspace_folders[1].name
+            if
+                path ~= vim.fn.stdpath('config')
+                and (vim.uv.fs_stat(path .. '/.luarc.json') or vim.uv.fs_stat(path .. '/.luarc.jsonc'))
+            then
+                return
+            end
+        end
+
+        client.config.settings.Lua = vim.tbl_deep_extend('force', client.config.settings.Lua, {
+            runtime = {
+                version = 'LuaJIT',
+                path = {
+                    'lua/?.lua',
+                    'lua/?/init.lua',
+                },
+            },
+            workspace = {
+                checkThirdParty = false,
+                library = {
+                    vim.env.VIMRUNTIME,
+                    vim.api.nvim_get_runtime_file("lua/lspconfig", false)[1],
+                },
+            },
+        })
+    end,
+    settings = {
+        Lua = {},
+    },
+})
+-- lua
+vim.lsp.enable('lua_ls')
+-- python
+vim.lsp.enable('ty')
+-- c & cpp
+vim.lsp.enable('clangd')
+-- json
+vim.lsp.enable('jsonls')
+-- qml
+vim.lsp.enable('qmlls')
+----------------------------------
+--  特殊快捷键
+----------------------------------
+local map_multistep = require('mini.keymap').map_multistep
+map_multistep('i', '<Tab>',   { 'pmenu_next' })
+map_multistep('i', '<S-Tab>', { 'pmenu_prev' })
+map_multistep('i', '<CR>',    { 'pmenu_accept', 'minipairs_cr' })
+map_multistep('i', '<BS>',    { 'minipairs_bs' })
+
+local map_combo = require('mini.keymap').map_combo
+local mode = { 'i', 'c', 'x', 's' }
+map_combo(mode, 'jk', '<BS><BS><Esc>')
+map_combo(mode, 'kj', '<BS><BS><Esc>')
+map_combo('t', 'jk', '<BS><BS><C-\\><C-n>')
+map_combo('t', 'kj', '<BS><BS><C-\\><C-n>')
+----------------------------------
+-- LSP提示
+----------------------------------
+vim.pack.add{
+    { src = 'https://gitee.com/nipabupa/tiny-inline-diagnostic.nvim' },
+}
+require('tiny-inline-diagnostic').setup({
+    preset = "amongus",
+    transparent_bg = true,
+    add_messages = {
+        display_count = true,
+    },
+    multilines = {
+        enabled = true,
+    },
+})
+vim.diagnostic.config({
+    virtual_text = false,
+    signs = false,
+    underline = true,
+    update_in_insert = false,
+    severity_sort = true
+})

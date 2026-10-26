@@ -1,15 +1,14 @@
-
 # Install
 
 ## 总体配置
 
-| 组件      | Linux               | Macos               | Windows             |
-| --        | --                  | --                  | --                  |
-| Shell     | fish                | fish                | powershell          |
-| Terminal  | Wezterm             | Wezterm             | Wezterm             |
-| Font      | wezterm内置nerdfont | wezterm内置nerdfont | wezterm内置nerdfont |
-| Editor    | neovim              | neovim              | neovim              |
-| 窗口管理    | niri              |               | glazewm              |
+| 组件     | Linux               | Windows             |
+| --       | --                  | --                  |
+| Shell    | fish                | powershell          |
+| Terminal | ghostty             | WindowsTerminal     |
+| Font     | ghostty内置nerdfont | ghostty内置nerdfont |
+| Editor   | neovim              | neovim              |
+| 窗口管理 | hyprland            | glazewm(不用也行)   |
 
 - 终端也可使用ghostty或WindowsTerminal，具体配置参考对应配置文件，个人更喜欢wezterm，跨平台体验一致，lua配置灵活度高
 - 可自行配置其他nerdfont字体，参考wezterm或其他终端配置文档

@@ -102,10 +102,10 @@ require('mini.jump2d').setup()
 require('mini.files').setup()
 vim.keymap.set( {'n', 'x', 'o' }, '<leader>e', function()
     local tmp = vim.api.nvim_buf_get_name(0)
-    if tmp == nil or tmp == "" then
-        MiniFiles.open()
-    else
+    if vim.uv.fs_stat(tmp) ~= nil then
         MiniFiles.open(tmp)
+    else
+        MiniFiles.open()
     end
 end, { desc="打开文件管理器", silent=true, remap=false })
 ----------------------------------

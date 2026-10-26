@@ -1,0 +1,25 @@
+{
+  "plugins": {
+    "catppuccin": {
+      "rev": "edefef779ab08ce1a4a404713e3012b0d202bd35",
+      "src": "https://gitee.com/nipabupa/catppuccin"
+    },
+    "mini.nvim": {
+      "rev": "1345d191bb3da9c7b0e977f4387c5761f9bff68d",
+      "src": "https://gitee.com/nipabupa/mini.nvim",
+      "version": "'stable'"
+    },
+    "nvim-lspconfig": {
+      "rev": "910f0c4d46aa186641518395bc7e6fffb4d23baf",
+      "src": "https://gitee.com/nipabupa/nvim-lspconfig"
+    },
+    "nvim-treesitter": {
+      "rev": "e289100ff98969e118c702199d88b764ce9e7fdf",
+      "src": "https://gitee.com/nipabupa/nvim-treesitter"
+    },
+    "tiny-inline-diagnostic.nvim": {
+      "rev": "6264451f14119d63a52580e5198d6baf8518b0b2",
+      "src": "https://gitee.com/nipabupa/tiny-inline-diagnostic.nvim"
+    }
+  }
+}

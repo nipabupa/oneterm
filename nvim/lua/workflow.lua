@@ -80,27 +80,19 @@ vim.lsp.enable('clangd')
 vim.lsp.enable('jsonls')
 -- qml
 vim.lsp.enable('qmlls')
+
 ----------------------------------
--- LSP提示
+-- 行内diagnostic配置
 ----------------------------------
-vim.pack.add{
-    -- { src = 'https://github.com/rachartier/tiny-inline-diagnostic.nvim' },
-    { src = 'git@gitee.com:nipabupa/tiny-inline-diagnostic.nvim' },
-}
-require('tiny-inline-diagnostic').setup({
-    preset = "amongus",
-    transparent_bg = true,
-    add_messages = {
-        display_count = true,
-    },
-    multilines = {
-        enabled = true,
-    },
-})
 vim.diagnostic.config({
-    virtual_text = false,
-    signs = false,
-    underline = true,
-    update_in_insert = false,
-    severity_sort = true
+    float = {
+        -- 或者使用字符数组自定义: { "┌", "─", "┐", "│", "┘", "─", "└", "│" }
+        border = "rounded",
+        header = "",          -- 移除默认的 "Diagnostics" 标题，节省空间
+        source = "if_many",   -- 仅在多个源时显示来源
+        -- prefix = " ",      -- 消息前的前缀
+    },
 })
+vim.keymap.set("n", "<C-x>", function()
+    vim.diagnostic.open_float()
+end, { silent = true, remap = false, desc = '显示当前diagnostic'})

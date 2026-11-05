@@ -61,23 +61,69 @@ vim.api.nvim_create_autocmd("FileType", {
     pattern = { "cpp", "c", "h" },
     callback = function(args)
         ------------------------------------------
+        -- 在 .cpp 和 .h 之间切换
+        ------------------------------------------
+        vim.keymap.set("n", "<F2>", function()
+            local ft = vim.bo.filetype
+            local path = vim.api.nvim_buf_get_name(0)
+            if ft == 'cpp' then
+                local t = ''
+                if path:sub(-1) == 'h' then
+                    t = path:sub(1, -2) .. 'cpp'
+                else
+                    t = path:sub(1, -4) .. 'h'
+                end
+                if file_exists(t) then
+                    vim.cmd.edit(t)
+                end
+            end
+        end, { buffer = args.buf, silent = true, remap = false, desc = '头文件与源文件切换'})
+        ------------------------------------------
         -- 打开离当前文件最近的CMakeLists.txt
         ------------------------------------------
         vim.keymap.set("n", "<F3>", function()
+            local cwd = vim.uv.cwd()
             -- 如果是同一目录的话直接打开
             -- 如果当前文件目录没有，逐级向上查找，直到当前启动目录
+            local path = vim.api.nvim_buf_get_name(0)
+            local parent = vim.fs.dirname(path)
+            while parent:find(cwd, 1, true) == 1 do
+                local curpath = vim.fs.joinpath(parent, "CMakeLists.txt")
+                if file_exists(curpath) then
+                    vim.cmd.edit(curpath)
+                    return
+                end
+                parent = vim.fs.dirname(parent)
+            end
         end, { buffer = args.buf, silent = true, remap = false, desc = '打开当前项目CMakeLists'})
         ------------------------------------------
-        -- 在 .cpp 和 .h 之间切换
+        -- CMake构建
         ------------------------------------------
         vim.keymap.set("n", "<F4>", function()
-            local alt = vim.fn.expand("%:e") == "cpp"
-                and vim.fn.expand("%:r") .. ".h"
-                or  vim.fn.expand("%:r") .. ".cpp"
-            if file_exists(alt) then
-                vim.cmd("e " .. alt)
-            end
-        end, { buffer = args.buf, silent = true, remap = false, desc = '头文件与源文件切换'})
+            vim.system({"cmake", "--build", "build"}, {stdout=false, stderr=false}, function(result)
+                if result.code == 0 then
+                    vim.notify("CMake构建完成!")
+                else
+                    vim.notify("CMake构建失败!")
+                end
+            end)
+        end, { buffer = args.buf, silent = true, remap = false, desc = 'CMake构建项目'})
+        ------------------------------------------
+        -- CMake运行
+        ------------------------------------------
+        vim.keymap.set("n", "<F5>", function()
+            vim.ui.input({prompt = " "}, function(word)
+                if word ~= nil then
+                    vim.system({"./build/" .. word}, {stdout=false, stderr=false}, function(result)
+                        if result.code == 0 then
+                            vim.notify("执行完成!")
+                        else
+                            vim.notify("执行失败!")
+                        end
+                    end)
+                end
+            end);
+        end, { buffer = args.buf, silent = true, remap = false, desc = '打开当前项目CMakeLists'})
         ------------------------------------------
         -- 根据函数定义生成对应函数体
         ------------------------------------------

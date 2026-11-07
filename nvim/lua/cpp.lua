@@ -46,48 +46,42 @@ local function get_function_str(root, bufnr)
         end
         pare = pare:parent()
     end
+    -- 计算类字符串
     local class_str = ''
     if pare ~= nil then
-        local class_node = pare:field('name')[1]
-        class_str = vim.treesitter.get_node_text(class_node, bufnr)
+        class_str = vim.treesitter.get_node_text(pare:field('name')[1], bufnr)
     end
     local res = ''
-    for child in root:iter_children() do
-        if child:type() == 'primitive_type' then
-            -- 返回类型
-            res = res .. vim.treesitter.get_node_text(child, bufnr)
-            if class_str then
-                res = res .. ' ' .. class_str .. '::'
-            end
-            goto END
-        end
-        if child:type() == 'function_declarator' then
-            -- 函数名
-            local function_node = child:field('declarator')[1]
-            res = res .. vim.treesitter.get_node_text(function_node, bufnr)
-            -- 参数列表
-            local parameters_node = child:field('parameters')[1]
-            local nums = parameters_node:child_count()
-            for i=0, nums  do
-                local tnode = parameters_node:child(i)
-                if i == 0 and i == nums-1 then
-                    res = res .. vim.treesitter.get_node_text(tnode, bufnr)
-                else
-                    print(tnode)
-                    if tnode:type() == 'parameter_declaration' then
-                        local param_type_node = tnode:field('type')[1]
-                        local param_name_node = tnode:field('declarator')[1]
-                        res = res .. vim.treesitter.get_node_text(param_type_node, bufnr)
-                        res = res .. ' ' .. vim.treesitter.get_node_text(param_name_node, bufnr)
-                        if i < nums then
-                            res = res .. ', '
-                        end
+    -- 获取返回类型拼接类字符串
+    res = res .. vim.treesitter.get_node_text(root:field("type")[1], bufnr)
+    if class_str then
+        res = res .. ' ' .. class_str .. '::'
+    end
+    -- 获取声明节点
+    local declarator_node = root:field("declarator")[1]
+    local name_node = declarator_node:field("declarator")[1]
+    local parameters_node = declarator_node:field("parameters")[1]
+    res = res .. vim.treesitter.get_node_text(name_node, bufnr) .. '('
+    for i, item in ipairs(parameters_node:named_children()) do
+        if item:type() == 'optional_parameter_declaration' then
+            -- 丢弃最后一个默认值节点
+            local count = item:named_child_count()
+            for j, t in ipairs(item:named_children()) do
+                if j < count then
+                    res = res .. vim.treesitter.get_node_text(t, bufnr)
+                    if j < count - 1 then
+                        res = res .. ' '
                     end
                 end
             end
+        else
+            res = res .. vim.treesitter.get_node_text(item, bufnr)
         end
-        ::END::
+        if i < parameters_node:named_child_count() then
+            res = res .. ', '
+        end
     end
+    res = res .. ') { }'
     return res
 end
 
@@ -168,9 +162,8 @@ vim.api.nvim_create_autocmd("FileType", {
                 return
             end
             local res = get_function_str(root, bufnr)
-            print(res)
             -- 复制到寄存器中
-            vim.fn.setreg('a', res)
+            vim.fn.setreg('"', res)
         end, { buffer = args.buf, silent = true, remap = false, desc = '生成函数体'})
     end,
 })

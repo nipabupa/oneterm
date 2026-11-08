@@ -1,5 +1,30 @@
 {
-    "创建库目标": { "prefix": "add_library", "body": "add_library($1 ${2|STATIC,SHARED,INTERFACE|} $3)" },
-    "创建可执行目标": { "prefix": "add_executable", "body": "add_executable($1 $2)" },
-    "目标链接配置": { "prefix": "target_link", "body": "target_link_libraries($1 ${2|PRIVATE,PUBLIC|} $3)" }
+    "初始化": {
+        "prefix": "init",
+        "body": "cmake_minimum_required(VERSION 3.16)\n\nproject($1 VERSION 1.0)\n\nset(CMAKE_CXX_STANDARD $2)\nset(CMAKE_CXX_STANDARD_REQUIRED ON)\n\nset(CMAKE_CXX_STANDARD_REQUIRED ON)\n"
+    },
+    "创建库目标": {
+        "prefix": "add_library",
+        "body": "add_library($1 ${2|STATIC,SHARED,INTERFACE|} $3)"
+    },
+    "创建可执行目标": {
+        "prefix": "add_executable",
+        "body": "add_executable($1 $2)"
+    },
+    "目标链接配置": {
+        "prefix": "target_link",
+        "body": "target_link_libraries($1 ${2|PRIVATE,PUBLIC|} $3)"
+    },
+    "目标头文件配置": {
+        "prefix": "target_include",
+        "body": "target_include_directories($1 ${2|PRIVATE,PUBLIC|} $3)"
+    },
+    "目标定义配置": {
+        "prefix": "target_compile",
+        "body": "target_compile_definitions($1 ${2|PRIVATE,PUBLIC|} $3)"
+    },
+    "FetchContent": {
+        "prefix": "fetch_content",
+        "body": "include(FetchContent)\nFetchContent_Declare(\n    $1\n    GIT_REPOSITORY $2\n    GIT_TAG $3\n)\nFetchContent_MakeAvailable($4)"
+    }
 }

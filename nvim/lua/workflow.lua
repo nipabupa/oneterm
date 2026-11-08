@@ -93,6 +93,6 @@ vim.diagnostic.config({
         -- prefix = " ",      -- 消息前的前缀
     },
 })
-vim.keymap.set("n", "<C-x>", function()
+vim.keymap.set("n", "<leader>q", function()
     vim.diagnostic.open_float()
 end, { silent = true, remap = false, desc = '显示当前diagnostic'})

@@ -41,7 +41,7 @@ local function get_function_str(root, bufnr)
     -- 判断父节点有没有类
     local pare = root:parent()
     while pare ~= nil do
-        if pare:type() == 'class_specifier' then
+        if pare:type() == 'class_specifier' or pare:type() == 'namespace_definition' then
             break
         end
         pare = pare:parent()
@@ -52,10 +52,14 @@ local function get_function_str(root, bufnr)
         class_str = vim.treesitter.get_node_text(pare:field('name')[1], bufnr)
     end
     local res = ''
-    -- 获取返回类型拼接类字符串
-    res = res .. vim.treesitter.get_node_text(root:field("type")[1], bufnr)
-    if class_str then
-        res = res .. ' ' .. class_str .. '::'
+    -- 获取返回类型，但是有可能没有返回类型
+    local return_type_node = root:field('type')[1]
+    if return_type_node ~= nil then
+        res = res .. vim.treesitter.get_node_text(return_type_node, bufnr) .. ' '
+    end
+    -- 拼接类字符串
+    if class_str ~= "" then
+        res = res .. class_str .. '::'
     end
     -- 获取声明节点
     local declarator_node = root:field("declarator")[1]
@@ -81,7 +85,7 @@ local function get_function_str(root, bufnr)
             res = res .. ', '
         end
     end
-    res = res .. ') { }'
+    res = res .. ') {}'
     return res
 end
 
